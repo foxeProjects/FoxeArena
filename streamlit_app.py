@@ -2,14 +2,14 @@ import streamlit as st
 from streamlit_gsheets import GSheetsConnection
 import pandas as pd
 
-# --- CONFIGURACIÓN DE PÁGINA ---
+# --- CONFIGURACIÓN ---
 st.set_page_config(page_title="FOXE ARENA", page_icon="🏆", layout="centered")
 
-# --- RUTAS DE RECURSOS ---
+# --- RUTAS DE IMÁGENES ---
 LOGO = "assets/6516920E-25CA-423F-AD08-57D6C48BDDE1.png"
 ESTADIO = "assets/8B390EC8-EB25-48F3-8838-76DE0F4416D9.png"
 
-# --- ESTILO VISUAL PREMIUN ---
+# --- ESTILO CSS (DISEÑO PREMIUM) ---
 st.markdown(f"""
     <style>
     .stApp {{
@@ -26,12 +26,14 @@ st.markdown(f"""
         box-shadow: 0 0 15px rgba(241, 213, 146, 0.4);
         margin-bottom: 20px;
         text-align: center;
+        color: white;
     }}
-    .hype-text {{
+    .hype-title {{
         color: #f1d592;
         text-align: center;
         font-family: 'Impact', sans-serif;
-        font-size: 2.5rem;
+        font-size: 3rem;
+        text-shadow: 2px 2px 4px #000;
     }}
     </style>
     """, unsafe_allow_html=True)
@@ -39,73 +41,78 @@ st.markdown(f"""
 # --- CONEXIÓN A DATOS ---
 try:
     conn = st.connection("gsheets", type=GSheetsConnection)
-    url = st.secrets["connections"]["gsheets"]["spreadsheet"]
-    songs_df = conn.read(spreadsheet=url, worksheet="wc-songs")
-    users_df = conn.read(spreadsheet=url, worksheet="wc-user")
+    url_sheet = st.secrets["connections"]["gsheets"]["spreadsheet"]
+    songs_df = conn.read(spreadsheet=url_sheet, worksheet="wc-songs")
+    users_df = conn.read(spreadsheet=url_sheet, worksheet="wc-user")
 except Exception as e:
-    st.error("Error de conexión. Revisa que el Secret esté en una sola línea.")
+    st.error("⚠️ Error de conexión. Revisa que el Secret esté en una sola línea y la hoja sea pública.")
     st.stop()
 
-# --- LÓGICA DE NAVEGACIÓN ---
+# --- NAVEGACIÓN ---
 if 'page' not in st.session_state:
     st.session_state.page = 'home'
 
-# --- PÁGINA DE INICIO ---
+# --- PÁGINA: HOME ---
 if st.session_state.page == 'home':
-    st.image(LOGO, width=250)
-    st.markdown("<h1 class='hype-text'>¡BIENVENIDO A FOXE ARENA!</h1>", unsafe_allow_html=True)
-    st.write("### Siente la pasión y vibra con la banda sonora oficial.")
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        st.image(LOGO, use_container_width=True)
     
-    st.divider()
+    st.markdown("<h1 class='hype-title'>FOXE ARENA</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align:center; color:white; font-size:1.2rem;'>🔥 ¡Bienvenido a la porra oficial! Siente la música del mundial. 🔥</p>", unsafe_allow_html=True)
     
+    st.markdown("### 🎵 ÚLTIMOS LANZAMIENTOS")
     if not songs_df.empty:
-        st.subheader("🎵 ÚLTIMAS CANCIONES")
-        for _, song in songs_df.tail(3).iloc[::-1].iterrows():
-            st.markdown(f"<div class='gold-card'><b>{song['nombre']}</b> - {song['grupo']}</div>", unsafe_allow_html=True)
+        # Mostramos las 3 últimas canciones
+        ultimas = songs_df.tail(3).iloc[::-1]
+        for _, song in ultimas.iterrows():
+            st.markdown(f"<div class='gold-card'><b>{song['nombre']}</b><br><small>{song['grupo']}</small></div>", unsafe_allow_html=True)
             st.video(song['url'])
     
-    if st.button("MOSTRAR TODAS"):
+    if st.button("VER TODAS LAS CANCIONES"):
         for grupo, datos in songs_df.groupby("grupo"):
             with st.expander(f"📁 GRUPO: {grupo}"):
                 for _, r in datos.iterrows():
                     st.write(f"▶️ [{r['nombre']}]({r['url']})")
 
-    st.markdown("---")
-    if st.button("🔐 Admin Portal"):
+    st.write("---")
+    if st.button("🔐 Acceso Admin"):
         st.session_state.page = 'admin_login'
         st.rerun()
 
-# --- LOGIN ADMIN ---
+# --- PÁGINA: LOGIN ---
 elif st.session_state.page == 'admin_login':
-    st.markdown("<h2 class='hype-text'>ACCESO RESTRINGIDO</h2>", unsafe_allow_html=True)
-    with st.form("login"):
-        u = st.text_input("Usuario")
-        p = st.text_input("Contraseña", type="password")
-        if st.form_submit_button("ACCEDER"):
-            # Validación con tu tabla wc-user
-            if not users_df[(users_df['user'] == u) & (users_df['password'] == p)].empty:
+    st.markdown("<h2 class='hype-title'>LOGIN</h2>", unsafe_allow_html=True)
+    with st.form("login_form"):
+        user_in = st.text_input("Usuario")
+        pass_in = st.text_input("Contraseña", type="password")
+        if st.form_submit_button("ENTRAR"):
+            match = users_df[(users_df['user'] == user_in) & (users_df['password'] == pass_in)]
+            if not match.empty:
                 st.session_state.page = 'admin_panel'
                 st.rerun()
             else:
                 st.error("Credenciales incorrectas")
-    if st.button("Volver"):
+    
+    if st.button("Volver al Inicio"):
         st.session_state.page = 'home'
         st.rerun()
 
-# --- PANEL ADMIN ---
+# --- PÁGINA: PANEL ADMIN ---
 elif st.session_state.page == 'admin_panel':
-    st.markdown("<h2 class='hype-text'>GESTIÓN DE CANCIONES</h2>", unsafe_allow_html=True)
-    with st.form("new_song"):
+    st.markdown("<h2 class='hype-title'>PANEL DE CONTROL</h2>", unsafe_allow_html=True)
+    with st.form("add_song"):
+        st.write("Añadir nueva canción:")
         n = st.text_input("Nombre")
-        l = st.text_input("URL de YouTube")
+        u = st.text_input("YouTube URL")
         g = st.text_input("Grupo")
-        if st.form_submit_button("AÑADIR CANCIÓN"):
-            new_row = pd.DataFrame([{"nombre": n, "url": l, "grupo": g}])
+        if st.form_submit_button("PUBLICAR"):
+            new_row = pd.DataFrame([{"nombre": n, "url": u, "grupo": g}])
             updated_df = pd.concat([songs_df, new_row], ignore_index=True)
-            conn.update(spreadsheet=url, worksheet="wc-songs", data=updated_df)
-            st.success("Canción añadida con éxito")
+            conn.update(spreadsheet=url_sheet, worksheet="wc-songs", data=updated_df)
+            st.success("¡Canción añadida!")
             st.balloons()
-    
+            
     if st.button("Cerrar Sesión"):
         st.session_state.page = 'home'
         st.rerun()

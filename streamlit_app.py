@@ -5,145 +5,107 @@ import pandas as pd
 # --- CONFIGURACIÓN DE PÁGINA ---
 st.set_page_config(page_title="FOXE ARENA", page_icon="🏆", layout="centered")
 
-# --- RUTAS DE IMÁGENES ---
-LOGO_PATH = "assets/6516920E-25CA-423F-AD08-57D6C48BDDE1.png"
-ESTADIO_PATH = "assets/8B390EC8-EB25-48F3-8838-76DE0F4416D9.png"
+# --- RUTAS DE RECURSOS ---
+LOGO = "assets/6516920E-25CA-423F-AD08-57D6C48BDDE1.png"
+ESTADIO = "assets/8B390EC8-EB25-48F3-8838-76DE0F4416D9.png"
 
-# --- ESTILO CSS PERSONALIZADO (Look Premium) ---
+# --- ESTILO VISUAL PREMIUN ---
 st.markdown(f"""
     <style>
-    /* Fondo con overlay oscuro y la imagen de tu repo */
     .stApp {{
         background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), 
-                    url("https://raw.githubusercontent.com/foxeProjects/FoxeArena/main/{ESTADIO_PATH}");
+                    url("https://raw.githubusercontent.com/foxeProjects/FoxeArena/main/{ESTADIO}");
         background-size: cover;
         background-attachment: fixed;
     }}
-    
-    /* Tarjetas doradas con efecto de brillo */
     .gold-card {{
         border: 2px solid #f1d592;
         border-radius: 15px;
         padding: 20px;
-        background-color: rgba(15, 23, 15, 0.85);
-        box-shadow: 0 0 20px rgba(241, 213, 146, 0.4);
-        margin-bottom: 15px;
+        background-color: rgba(15, 23, 15, 0.9);
+        box-shadow: 0 0 15px rgba(241, 213, 146, 0.4);
+        margin-bottom: 20px;
         text-align: center;
-        color: white;
     }}
-    
-    .hype-title {{
+    .hype-text {{
         color: #f1d592;
         text-align: center;
         font-family: 'Impact', sans-serif;
-        font-size: 3rem;
-        text-shadow: 3px 3px 5px #000;
-        margin-top: -10px;
-    }}
-    
-    .section-title {{
-        color: #f1d592;
-        border-left: 5px solid #f1d592;
-        padding-left: 15px;
-        margin-top: 30px;
-        font-weight: bold;
-    }}
-
-    /* Estilo para los botones */
-    .stButton>button {{
-        width: 100%;
-        border-radius: 10px;
-        border: 1px solid #f1d592;
-        background-color: rgba(241, 213, 146, 0.1);
-        color: #f1d592;
+        font-size: 2.5rem;
     }}
     </style>
     """, unsafe_allow_html=True)
 
-# --- CONEXIÓN A GOOGLE SHEETS ---
+# --- CONEXIÓN A DATOS ---
 try:
     conn = st.connection("gsheets", type=GSheetsConnection)
-    songs_df = conn.read(worksheet="wc-songs")
-    users_df = conn.read(worksheet="wc-user")
+    url = st.secrets["connections"]["gsheets"]["spreadsheet"]
+    songs_df = conn.read(spreadsheet=url, worksheet="wc-songs")
+    users_df = conn.read(spreadsheet=url, worksheet="wc-user")
 except Exception as e:
-    st.error("⚠️ Error de conexión. Revisa los Secrets en Streamlit Cloud.")
-    songs_df = pd.DataFrame(columns=["nombre", "url", "grupo"])
-    users_df = pd.DataFrame(columns=["user", "password", "role"])
+    st.error("Error de conexión. Revisa que el Secret esté en una sola línea.")
+    st.stop()
 
-# --- GESTIÓN DE NAVEGACIÓN ---
+# --- LÓGICA DE NAVEGACIÓN ---
 if 'page' not in st.session_state:
     st.session_state.page = 'home'
 
-# --- 1. HOME PAGE ---
+# --- PÁGINA DE INICIO ---
 if st.session_state.page == 'home':
-    # Logo
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col2:
-        st.image(LOGO_PATH, use_container_width=True)
+    st.image(LOGO, width=250)
+    st.markdown("<h1 class='hype-text'>¡BIENVENIDO A FOXE ARENA!</h1>", unsafe_allow_html=True)
+    st.write("### Siente la pasión y vibra con la banda sonora oficial.")
     
-    st.markdown("<h1 class='hype-title'>FOXE ARENA</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align:center; font-size:1.2rem; color:white;'>🔥 ¡Siente la pasión del mundial y vibra con la banda sonora oficial! 🔥</p>", unsafe_allow_html=True)
-    
-    st.markdown("<h3 class='section-title'>🎵 ÚLTIMOS TEMAS</h3>", unsafe_allow_html=True)
+    st.divider()
     
     if not songs_df.empty:
-        # Mostramos las 3 últimas en orden inverso
-        ultimas_3 = songs_df.tail(3).iloc[::-1]
-        for _, song in ultimas_3.iterrows():
-            st.markdown(f"<div class='gold-card'><b>{song['nombre']}</b><br><small>{song['grupo']}</small></div>", unsafe_allow_html=True)
+        st.subheader("🎵 ÚLTIMAS CANCIONES")
+        for _, song in songs_df.tail(3).iloc[::-1].iterrows():
+            st.markdown(f"<div class='gold-card'><b>{song['nombre']}</b> - {song['grupo']}</div>", unsafe_allow_html=True)
             st.video(song['url'])
     
-    if st.button("VER TODAS LAS CANCIONES"):
+    if st.button("MOSTRAR TODAS"):
         for grupo, datos in songs_df.groupby("grupo"):
             with st.expander(f"📁 GRUPO: {grupo}"):
                 for _, r in datos.iterrows():
                     st.write(f"▶️ [{r['nombre']}]({r['url']})")
 
-    # Footer discreto
-    st.write("---")
+    st.markdown("---")
     if st.button("🔐 Admin Portal"):
         st.session_state.page = 'admin_login'
         st.rerun()
 
-# --- 2. LOGIN DE ADMIN ---
+# --- LOGIN ADMIN ---
 elif st.session_state.page == 'admin_login':
-    st.markdown("<h2 class='hype-title'>ACCESO ADMIN</h2>", unsafe_allow_html=True)
-    with st.form("login_form"):
-        user_input = st.text_input("Usuario")
-        pass_input = st.text_input("Contraseña", type="password")
-        if st.form_submit_button("ENTRAR"):
-            # Validación contra la tabla wc-user
-            match = users_df[(users_df['user'] == user_input) & (users_df['password'] == pass_input)]
-            if not match.empty:
+    st.markdown("<h2 class='hype-text'>ACCESO RESTRINGIDO</h2>", unsafe_allow_html=True)
+    with st.form("login"):
+        u = st.text_input("Usuario")
+        p = st.text_input("Contraseña", type="password")
+        if st.form_submit_button("ACCEDER"):
+            # Validación con tu tabla wc-user
+            if not users_df[(users_df['user'] == u) & (users_df['password'] == p)].empty:
                 st.session_state.page = 'admin_panel'
                 st.rerun()
             else:
                 st.error("Credenciales incorrectas")
-    
-    if st.button("← Volver al Inicio"):
+    if st.button("Volver"):
         st.session_state.page = 'home'
         st.rerun()
 
-# --- 3. PANEL DE CONTROL (Añadir canciones) ---
+# --- PANEL ADMIN ---
 elif st.session_state.page == 'admin_panel':
-    st.markdown("<h2 class='hype-title'>PANEL DE CONTROL</h2>", unsafe_allow_html=True)
-    
+    st.markdown("<h2 class='hype-text'>GESTIÓN DE CANCIONES</h2>", unsafe_allow_html=True)
     with st.form("new_song"):
-        st.write("### ➕ Añadir Nueva Canción")
-        n_nombre = st.text_input("Nombre del Tema")
-        n_url = st.text_input("URL de YouTube")
-        n_grupo = st.text_input("Grupo (ej: Finales, Grupo B...)")
-        
-        if st.form_submit_button("PUBLICAR CANCIÓN"):
-            if n_nombre and n_url:
-                new_row = pd.DataFrame([{"nombre": n_nombre, "url": n_url, "grupo": n_grupo}])
-                updated_df = pd.concat([songs_df, new_row], ignore_index=True)
-                conn.update(worksheet="wc-songs", data=updated_df)
-                st.success("✅ ¡Canción añadida! Los fans ya pueden verla.")
-                st.balloons()
-            else:
-                st.warning("Rellena al menos Nombre y URL")
-
+        n = st.text_input("Nombre")
+        l = st.text_input("URL de YouTube")
+        g = st.text_input("Grupo")
+        if st.form_submit_button("AÑADIR CANCIÓN"):
+            new_row = pd.DataFrame([{"nombre": n, "url": l, "grupo": g}])
+            updated_df = pd.concat([songs_df, new_row], ignore_index=True)
+            conn.update(spreadsheet=url, worksheet="wc-songs", data=updated_df)
+            st.success("Canción añadida con éxito")
+            st.balloons()
+    
     if st.button("Cerrar Sesión"):
         st.session_state.page = 'home'
         st.rerun()

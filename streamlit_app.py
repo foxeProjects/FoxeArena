@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import re
 
 # --- CONFIGURACIÓN ---
 st.set_page_config(page_title="FOXE ARENA", page_icon="🏆", layout="centered")
@@ -9,88 +8,83 @@ st.set_page_config(page_title="FOXE ARENA", page_icon="🏆", layout="centered")
 LOGO = "assets/6516920E-25CA-423F-AD08-57D6C48BDDE1.png"
 ESTADIO = "assets/8B390EC8-EB25-48F3-8838-76DE0F4416D9.png"
 
-# --- EXTRACCIÓN DE MINIATURA ---
-def get_yt_thumb(url):
-    pattern = r'(?:v=|\/)([0-9A-Za-z_-]{11}).*'
-    match = re.search(pattern, url)
-    if match:
-        return f"https://img.youtube.com/vi/{match.group(1)}/hqdefault.jpg"
-    return ""
-
-# --- CSS: SUTILEZA Y GLOW ---
+# --- CSS: AJUSTE DE DISEÑO FIEL ---
 st.markdown(f"""
     <style>
-    /* Fondo con degradado profundo */
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
     .stApp {{
-        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9)), 
+        background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), 
                     url("https://raw.githubusercontent.com/foxeProjects/FoxeArena/main/{ESTADIO}");
         background-size: cover;
         background-attachment: fixed;
     }}
 
-    /* Logo Limpio */
+    /* CENTRADO ABSOLUTO DEL LOGO */
     .logo-container {{
-        text-align: center;
-        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-top: -30px;
     }}
     .logo-container img {{
-        width: 180px;
-        filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.5));
+        width: 200px;
+        height: auto;
     }}
 
-    /* Card con Glow Sutil */
+    /* TÍTULO IMPACTANTE */
+    .foxe-title {{
+        font-family: 'Bebas Neue', cursive;
+        font-size: 5rem;
+        text-align: center;
+        background: linear-gradient(to bottom, #f1d592, #a67c00);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-top: -10px;
+        margin-bottom: 0px;
+        letter-spacing: 2px;
+    }}
+
+    /* CAJA DORADA PARA EL VIDEO */
     .video-card {{
-        border: 1px solid rgba(241, 213, 146, 0.3);
-        border-radius: 12px;
-        background: rgba(10, 10, 10, 0.7);
-        overflow: hidden;
-        margin-bottom: 25px;
-        transition: all 0.4s ease;
-    }}
-    .video-card:hover {{
-        border: 1px solid rgba(241, 213, 146, 0.8);
-        box-shadow: 0 0 20px rgba(241, 213, 146, 0.2);
-        transform: translateY(-3px);
+        border: 2px solid #f1d592;
+        border-radius: 15px;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.8);
+        box-shadow: 0 0 25px rgba(241, 213, 146, 0.3);
+        margin-bottom: 40px;
     }}
 
-    .card-img {{
-        width: 100%;
-        aspect-ratio: 16/9;
-        object-fit: cover;
+    .card-info {{
+        padding: 15px 10px;
+        text-align: center;
     }}
 
-    .card-content {{
-        padding: 18px;
-    }}
-
-    .card-title {{
+    .card-info h3 {{
         color: #f1d592;
-        font-size: 1.25rem;
-        font-weight: 600;
         margin: 0;
-        letter-spacing: 0.5px;
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.8rem;
+        letter-spacing: 1px;
     }}
 
-    /* Botones Sutiles */
+    /* BOTONES SUTILES Y ELEGANTES */
     .stButton>button {{
         background: transparent;
-        border: 1px solid rgba(241, 213, 146, 0.4);
+        border: 1px solid rgba(241, 213, 146, 0.5);
         color: #f1d592;
-        font-size: 0.85rem;
-        font-weight: 400;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        padding: 8px 20px;
-        transition: all 0.3s;
+        border-radius: 5px;
+        padding: 10px 30px;
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.2rem;
+        transition: 0.3s;
     }}
     .stButton>button:hover {{
-        border: 1px solid #f1d592;
-        background: rgba(241, 213, 146, 0.05);
-        color: white;
+        border-color: #f1d592;
+        background: rgba(241, 213, 146, 0.1);
+        box-shadow: 0 0 10px rgba(241, 213, 146, 0.2);
     }}
-
-    /* Quitar estilos por defecto de links */
-    a {{ text-decoration: none !important; }}
     </style>
     """, unsafe_allow_html=True)
 
@@ -107,71 +101,47 @@ try:
 except:
     st.stop()
 
-# --- NAVEGACIÓN ---
-if 'page' not in st.session_state: st.session_state.page = 'home'
+# --- INTERFAZ ---
+# 1. Logo Centrado
+st.markdown(f'<div class="logo-container"><img src="https://raw.githubusercontent.com/foxeProjects/FoxeArena/main/{LOGO}"></div>', unsafe_allow_html=True)
 
-# --- 1. HOME ---
-if st.session_state.page == 'home':
-    st.markdown(f'<div class="logo-container"><img src="https://raw.githubusercontent.com/foxeProjects/FoxeArena/main/{LOGO}"></div>', unsafe_allow_html=True)
-    
-    st.markdown("<h2 style='text-align:center; color:white; font-weight:200; letter-spacing:3px; margin-bottom:40px;'>FOXE ARENA</h2>", unsafe_allow_html=True)
-    
-    st.write("#### 🎵 ÚLTIMOS LANZAMIENTOS")
+# 2. Título Foxe Arena
+st.markdown('<h1 class="foxe-title">FOXE ARENA</h1>', unsafe_allow_html=True)
+st.markdown("<p style='text-align:center; color:white; font-size:1.1rem; margin-top:-15px; letter-spacing:2px;'>LA PORRA OFICIAL DEL MUNDIAL</p>", unsafe_allow_html=True)
+
+st.markdown("<br><br>", unsafe_allow_html=True)
+
+# 3. Sección de Videos
+if st.session_state.get('page', 'home') == 'home':
+    st.markdown("<h4 style='color:#f1d592; font-family:Bebas Neue; letter-spacing:1px;'>🎵 ÚLTIMOS LANZAMIENTOS</h4>", unsafe_allow_html=True)
     
     ultimas = songs_df.tail(3).iloc[::-1]
     for _, song in ultimas.iterrows():
-        thumb = get_yt_thumb(song['url'])
+        # Iniciamos la Card Dorada
+        st.markdown('<div class="video-card">', unsafe_allow_html=True)
+        
+        # El Video embebido directamente (Streamlit lo pone dentro del div de la card)
+        st.video(song['url'])
+        
+        # Info de la canción debajo del video, dentro de la card
         st.markdown(f"""
-            <a href="{song['url']}" target="_blank">
-                <div class="video-card">
-                    <img src="{thumb}" class="card-img">
-                    <div class="card-content">
-                        <p class="card-title">{song['nombre']}</p>
-                        <p style="color: #888; font-size: 0.8rem; margin-top:5px;">{song['grupo']}</p>
-                    </div>
-                </div>
-            </a>
+            <div class="card-info">
+                <h3>{song['nombre']}</h3>
+                <p style="color:#888; margin:0;">{song['grupo']}</p>
+            </div>
         """, unsafe_allow_html=True)
+        
+        st.markdown('</div>', unsafe_allow_html=True) # Cerramos Card
 
+    # Botones de Navegación sutiles
     st.markdown("<br>", unsafe_allow_html=True)
-    if st.button("Explorar Banda Sonora Completa", use_container_width=True):
+    if st.button("EXPLORAR BANDA SONORA COMPLETA", use_container_width=True):
         st.session_state.page = 'all_songs'
         st.rerun()
 
-    # Footer Admin sutil
-    st.markdown("<br><br><br>", unsafe_allow_html=True)
+    st.markdown("<br><br>", unsafe_allow_html=True)
     col_a, col_b, col_c = st.columns([1,1,1])
     with col_b:
-        if st.button("Gestión Admin"):
-            st.session_state.page = 'admin_login'
-            st.rerun()
-
-# --- 2. TODAS LAS CANCIONES ---
-elif st.session_state.page == 'all_songs':
-    if st.button("← VOLVER"):
-        st.session_state.page = 'home'
-        st.rerun()
-    
-    st.markdown("<h3 style='color:#f1d592; letter-spacing:2px;'>BANDA SONORA COMPLETA</h3>", unsafe_allow_html=True)
-    for grupo, datos in songs_df.groupby("grupo"):
-        with st.expander(f"{grupo.upper()}", expanded=False):
-            for _, r in datos.iterrows():
-                st.markdown(f"• [{r['nombre']}]({r['url']})", unsafe_allow_html=True)
-
-# --- 3. LOGIN ---
-elif st.session_state.page == 'admin_login':
-    if st.button("← CANCELAR"):
-        st.session_state.page = 'home'
-        st.rerun()
-    
-    st.markdown("<div style='max-width:300px; margin:auto; padding-top:50px;'>", unsafe_allow_html=True)
-    with st.form("login"):
-        st.markdown("<p style='color:#f1d592; text-align:center;'>ACCESO PRIVADO</p>", unsafe_allow_html=True)
-        u = st.text_input("User")
-        p = st.text_input("Pass", type="password")
-        if st.form_submit_button("ACCEDER"):
-            match = users_df[(users_df['user'] == u) & (users_df['password'] == p)]
-            if not match.empty:
-                st.session_state.page = 'admin_panel'
-                st.rerun()
-    st.markdown("</div>", unsafe_allow_html=True)
+        if st.button("GESTIÓN ADMIN"):
+            # Lógica de login aquí
+            pass

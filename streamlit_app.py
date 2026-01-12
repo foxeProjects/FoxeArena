@@ -5,7 +5,7 @@ import pandas as pd
 st.set_page_config(page_title="FOXE ARENA", page_icon="🏆", layout="centered")
 
 # --- RUTAS ---
-LOGO = "assets/6516920E-25CA-423F-AD08-57D6C48BDDE1.jpeg"
+LOGO = "assets/6516920E-25CA-423F-AD08-57D6C48BDDE1.png"
 ESTADIO = "assets/8B390EC8-EB25-48F3-8838-76DE0F4416D9.png"
 
 # --- ESTILO CSS PERSONALIZADO ---

@@ -15,7 +15,7 @@ st.markdown[f"""
     /* Fondo con overlay oscuro para legibilidad */
     .stApp {{
         background: linear-gradient[rgba[0,0,0,0.7], rgba[0,0,0,0.8]], 
-                    url["https://raw.githubusercontent.com/TU_USUARIO/FoxeArena/main/{ESTADIO_PATH}"];
+                    url["https://raw.githubusercontent.com/foxeProjects/FoxeArena/main/{ESTADIO_PATH}"];
         background-size: cover;
         background-attachment: fixed;
     }}

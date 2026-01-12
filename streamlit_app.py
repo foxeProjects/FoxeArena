@@ -1,5 +1,4 @@
 import streamlit as st
-from streamlit_gsheets import GSheetsConnection
 import pandas as pd
 
 # --- CONFIGURACIÓN ---
@@ -9,7 +8,7 @@ st.set_page_config(page_title="FOXE ARENA", page_icon="🏆", layout="centered")
 LOGO = "assets/6516920E-25CA-423F-AD08-57D6C48BDDE1.png"
 ESTADIO = "assets/8B390EC8-EB25-48F3-8838-76DE0F4416D9.png"
 
-# --- ESTILO CSS (DISEÑO PREMIUM) ---
+# --- ESTILO CSS ---
 st.markdown(f"""
     <style>
     .stApp {{
@@ -28,91 +27,65 @@ st.markdown(f"""
         text-align: center;
         color: white;
     }}
-    .hype-title {{
-        color: #f1d592;
-        text-align: center;
-        font-family: 'Impact', sans-serif;
-        font-size: 3rem;
-        text-shadow: 2px 2px 4px #000;
-    }}
+    .hype-title {{ color: #f1d592; text-align: center; font-family: 'Impact'; font-size: 3rem; }}
     </style>
     """, unsafe_allow_html=True)
 
-# --- CONEXIÓN A DATOS ---
+# --- CONEXIÓN DIRECTA (SIN LIBRERÍAS EXTRA) ---
+@st.cache_data(ttl=60)
+def load_data(sheet_url, sheet_name):
+    # Convertimos la URL normal en una URL de descarga directa de CSV
+    csv_url = sheet_url.replace("/edit?usp=sharing", "/gviz/tq?tqx=out:csv&sheet=" + sheet_name)
+    return pd.read_csv(csv_url)
+
 try:
-    conn = st.connection("gsheets", type=GSheetsConnection)
-    url_sheet = st.secrets["connections"]["gsheets"]["spreadsheet"]
-    songs_df = conn.read(spreadsheet=url_sheet, worksheet="wc-songs")
-    users_df = conn.read(spreadsheet=url_sheet, worksheet="wc-user")
+    # Usamos la URL que me pasaste antes
+    SHEET_URL = "https://docs.google.com/spreadsheets/d/1-nj5YJsKbm3sAtibZXUZ1EbPYr31Mgx2tvcXzwiygGE/edit?usp=sharing"
+    songs_df = load_data(SHEET_URL, "wc-songs")
+    users_df = load_data(SHEET_URL, "wc-user")
 except Exception as e:
-    st.error("⚠️ Error de conexión. Revisa que el Secret esté en una sola línea y la hoja sea pública.")
+    st.error(f"Error cargando datos: {e}")
     st.stop()
 
 # --- NAVEGACIÓN ---
-if 'page' not in st.session_state:
-    st.session_state.page = 'home'
+if 'page' not in st.session_state: st.session_state.page = 'home'
 
-# --- PÁGINA: HOME ---
 if st.session_state.page == 'home':
     col1, col2, col3 = st.columns([1, 2, 1])
-    with col2:
-        st.image(LOGO, use_container_width=True)
+    with col2: st.image(LOGO, use_container_width=True)
     
     st.markdown("<h1 class='hype-title'>FOXE ARENA</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align:center; color:white; font-size:1.2rem;'>🔥 ¡Bienvenido a la porra oficial! Siente la música del mundial. 🔥</p>", unsafe_allow_html=True)
     
-    st.markdown("### 🎵 ÚLTIMOS LANZAMIENTOS")
-    if not songs_df.empty:
-        # Mostramos las 3 últimas canciones
-        ultimas = songs_df.tail(3).iloc[::-1]
-        for _, song in ultimas.iterrows():
-            st.markdown(f"<div class='gold-card'><b>{song['nombre']}</b><br><small>{song['grupo']}</small></div>", unsafe_allow_html=True)
-            st.video(song['url'])
+    st.markdown("### 🎵 ÚLTIMOS TEMAS")
+    for _, song in songs_df.tail(3).iloc[::-1].iterrows():
+        st.markdown(f"<div class='gold-card'><b>{song['nombre']}</b><br>{song['grupo']}</div>", unsafe_allow_html=True)
+        st.video(song['url'])
     
-    if st.button("VER TODAS LAS CANCIONES"):
+    if st.button("MOSTRAR TODAS"):
         for grupo, datos in songs_df.groupby("grupo"):
-            with st.expander(f"📁 GRUPO: {grupo}"):
-                for _, r in datos.iterrows():
-                    st.write(f"▶️ [{r['nombre']}]({r['url']})")
+            with st.expander(f"📁 {grupo}"):
+                for _, r in datos.iterrows(): st.write(f"▶️ [{r['nombre']}]({r['url']})")
 
     st.write("---")
-    if st.button("🔐 Acceso Admin"):
+    if st.button("🔐 Admin"):
         st.session_state.page = 'admin_login'
         st.rerun()
 
-# --- PÁGINA: LOGIN ---
 elif st.session_state.page == 'admin_login':
-    st.markdown("<h2 class='hype-title'>LOGIN</h2>", unsafe_allow_html=True)
-    with st.form("login_form"):
-        user_in = st.text_input("Usuario")
-        pass_in = st.text_input("Contraseña", type="password")
-        if st.form_submit_button("ENTRAR"):
-            match = users_df[(users_df['user'] == user_in) & (users_df['password'] == pass_in)]
-            if not match.empty:
+    with st.form("login"):
+        u = st.text_input("Usuario")
+        p = st.text_input("Pass", type="password")
+        if st.form_submit_button("Entrar"):
+            if not users_df[(users_df['user'] == u) & (users_df['password'] == p)].empty:
                 st.session_state.page = 'admin_panel'
                 st.rerun()
-            else:
-                st.error("Credenciales incorrectas")
-    
-    if st.button("Volver al Inicio"):
+            else: st.error("Fallo")
+    if st.button("Volver"):
         st.session_state.page = 'home'
         st.rerun()
 
-# --- PÁGINA: PANEL ADMIN ---
 elif st.session_state.page == 'admin_panel':
-    st.markdown("<h2 class='hype-title'>PANEL DE CONTROL</h2>", unsafe_allow_html=True)
-    with st.form("add_song"):
-        st.write("Añadir nueva canción:")
-        n = st.text_input("Nombre")
-        u = st.text_input("YouTube URL")
-        g = st.text_input("Grupo")
-        if st.form_submit_button("PUBLICAR"):
-            new_row = pd.DataFrame([{"nombre": n, "url": u, "grupo": g}])
-            updated_df = pd.concat([songs_df, new_row], ignore_index=True)
-            conn.update(spreadsheet=url_sheet, worksheet="wc-songs", data=updated_df)
-            st.success("¡Canción añadida!")
-            st.balloons()
-            
-    if st.button("Cerrar Sesión"):
+    st.write("Panel Admin (Solo lectura con este método)")
+    if st.button("Cerrar"):
         st.session_state.page = 'home'
         st.rerun()

@@ -228,6 +228,3 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-# 6. ADMIN PORTAL (DISCRETO)
-if st.button("Admin Portal"):
-    st.info("Configuración de administrador próximamente...")

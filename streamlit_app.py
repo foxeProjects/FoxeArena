@@ -184,7 +184,7 @@ st.markdown("""
         Siente la pasión del mundial, haz tus pronósticos<br>
         y vibra con la <b>banda sonora oficial</b>.
     </div>
-    <div class="scroll-icon"></div>
+    
 </div>
 """, unsafe_allow_html=True)
 

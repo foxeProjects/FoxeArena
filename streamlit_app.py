@@ -33,32 +33,22 @@ def load_songs():
         return df
     except: return pd.DataFrame()
 
-# ---------------- CSS (LIMPIEZA RADICAL BASADA EN TU FOTO) ----------------
+# ---------------- CSS (LIMPIEZA RADICAL) ----------------
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
 
-/* Ocultar el menú principal, pie y cabecera */
+/* Ocultar elementos de Streamlit */
 #MainMenu {visibility: hidden;}
 footer {visibility: hidden;}
 header {visibility: hidden;}
-
-/* Ocultar botón flotante 'View source on GitHub' */
 button[title="View source on GitHub"] {display: none !important;}
-
-/* Ocultar botón flotante 'Deploy this app' */
 button[title="Deploy this app"] {display: none !important;}
-
-/* Ocultar botón flotante 'Share' */
 button[title="Share"] {display: none !important;}
-
-/* Ocultar el banner superior de Deploy/GitHub (Streamlit Cloud) */
 [data-testid="stHeader"] {visibility: hidden; height: 0;}
 [data-testid="stDecoration"] {display: none !important;}
 [data-testid="stDeployButton"] {display: none !important;}
 .stDeployButton {display: none !important;}
-
-/* GitHub Ribbon / banner overlay */
 a[href*="github.com"],
 a:has(img[alt="View source on GitHub"]),
 img[alt="View source on GitHub"] {display: none !important;}
@@ -179,7 +169,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# 3. SECCIÓN MÚSICA (CON ESPACIADO CORREGIDO)
+# 3. SECCIÓN MÚSICA
 st.markdown("""
 <div class="music-header">
     <span class="music-icon">♫</span>
@@ -188,26 +178,26 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# 4. CARD
+# 4. CARDS (BUCLE PARA TODAS LAS CANCIONES)
 songs = load_songs()
 if not songs.empty:
-    row = songs.iloc[0] 
-    url = str(row.get('url', ''))
-    st.markdown(f"""
-    <div class="video-card">
-        <a href="{url}" target="_blank" style="text-decoration:none;">
-            <div class="thumb-container">
-                <img class="thumb-img" src="{get_thumbnail(url)}">
-                <div class="play-btn"></div>
+    for index, row in songs.iterrows():
+        url = str(row.get('url', ''))
+        st.markdown(f"""
+        <div class="video-card">
+            <a href="{url}" target="_blank" style="text-decoration:none;">
+                <div class="thumb-container">
+                    <img class="thumb-img" src="{get_thumbnail(url)}">
+                    <div class="play-btn"></div>
+                </div>
+            </a>
+            <div class="video-info">
+                <div class="v-title">{row.get('nombre', 'Título desconocido')}</div>
+                <div class="v-sub">{row.get('grupo', 'Artista desconocido')}</div>
+                <a class="v-link" href="{url}" target="_blank">Ver en YouTube</a>
             </div>
-        </a>
-        <div class="video-info">
-            <div class="v-title">{row.get('nombre', 'Baila Baila')}</div>
-            <div class="v-sub">{row.get('grupo', 'Himno Porra')}</div>
-            <a class="v-link" href="{url}" target="_blank">Ver en YouTube</a>
         </div>
-    </div>
-    """, unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
 
 # 5. FOOTER
 st.markdown(f"""

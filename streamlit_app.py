@@ -23,7 +23,8 @@ def get_video_id(url: str):
 
 def get_thumbnail(url: str) -> str:
     vid = get_video_id(url)
-    return f"https://img.youtube.com/vi/{vid}/maxresdefault.jpg" if vid else ""
+    # Usamos hqdefault.jpg porque maxresdefault a veces falla en videos nuevos
+    return f"https://img.youtube.com/vi/{vid}/hqdefault.jpg" if vid else ""
 
 @st.cache_data(ttl=30)
 def load_songs():

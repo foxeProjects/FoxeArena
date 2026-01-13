@@ -21,13 +21,10 @@ def get_video_id(url: str):
         if m: return m.group(1)
     return None
 
-def get_thumbnail_urls(url: str):
+def get_thumbnail(url: str) -> str:
     vid = get_video_id(url)
-    if not vid: return "", ""
-    # Retornamos la de máxima calidad y la estándar como respaldo
-    max_res = f"https://img.youtube.com/vi/{vid}/maxresdefault.jpg"
-    high_res = f"https://img.youtube.com/vi/{vid}/hqdefault.jpg"
-    return max_res, high_res
+    # Usamos hqdefault.jpg por defecto porque siempre existe y evita el recuadro gris
+    return f"https://img.youtube.com/vi/{vid}/hqdefault.jpg" if vid else ""
 
 @st.cache_data(ttl=30)
 def load_songs():
@@ -37,15 +34,17 @@ def load_songs():
         return df
     except: return pd.DataFrame()
 
-# ---------------- CSS ----------------
+# ---------------- CSS (LIMPIEZA Y AJUSTE DE IMAGEN) ----------------
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
 
+/* Ocultar elementos Streamlit */
 #MainMenu {visibility: hidden;}
 footer {visibility: hidden;}
 header {visibility: hidden;}
-[data-testid="stHeader"], [data-testid="stDecoration"] {display: none !important;}
+[data-testid="stHeader"] {visibility: hidden; height: 0;}
+[data-testid="stDecoration"] {display: none !important;}
 
 /* FONDO */
 [data-testid="stAppViewContainer"] {
@@ -54,14 +53,19 @@ header {visibility: hidden;}
     background-position: center;
 }
 
-.block-container { max-width: 450px; padding-top: 1.5rem !important; }
+.block-container { 
+    max-width: 450px; 
+    padding-top: 1.5rem !important; 
+}
 
-/* TEXTOS */
-.welcome-title { font-size: 30px; font-weight: 900; color: #FFFFFF; text-align: center; text-transform: uppercase; }
+/* BIENVENIDA */
+.welcome-container { text-align: center; margin-bottom: 10px; }
+.welcome-title { font-size: 30px; font-weight: 900; color: #FFFFFF; text-transform: uppercase; }
 .welcome-title span { color: #f5c542; text-shadow: 0 0 15px rgba(245,197,66,0.7); }
-.welcome-subtitle { font-size: 15px; color: rgba(255,255,255,0.85); text-align: center; margin-bottom: 20px; }
 
-.section-label { font-size: 24px; font-weight: 800; color: #f5c542; text-align: center; margin-top: 10px; }
+/* SECCIÓN MÚSICA */
+.music-header { text-align: center; padding-top: 5px; }
+.section-label { font-size: 24px; font-weight: 800; color: #f5c542; letter-spacing: 1px; }
 
 /* CARD VIDEO */
 .video-card {
@@ -70,13 +74,18 @@ header {visibility: hidden;}
     border-radius: 22px;
     overflow: hidden;
     margin-top: 15px;
-    box-shadow: 0 0 30px rgba(245,197,66,0.2);
 }
-.thumb-container { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; }
+.thumb-container { 
+    position: relative; 
+    width: 100%; 
+    aspect-ratio: 16/9; 
+    background: #000;
+    overflow: hidden;
+}
 .thumb-img { 
     width: 100%; 
     height: 100%; 
-    object-fit: cover; /* Evita bandas negras */
+    object-fit: cover; /* Esto elimina las bandas negras de los lados */
 }
 .play-btn {
     position: absolute;
@@ -99,37 +108,39 @@ header {visibility: hidden;}
 .v-sub { color: #ffffff; font-size: 14px; margin-bottom: 10px; }
 .v-link { color: #f5c542 !important; font-size: 12px; text-decoration: underline !important; }
 
+/* FOOTER */
 .footer-box { text-align: center; margin-top: 35px; padding-bottom: 25px; }
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- ESTRUCTURA ----------------
+# ---------------- ESTRUCTURA VISUAL ----------------
 
 st.markdown(f'<div style="text-align:center; margin-bottom:15px;"><img src="{LOGO}" width="165"></div>', unsafe_allow_html=True)
 
 st.markdown("""
-<div class="welcome-title">¡BIENVENIDO A <span>FOXE ARENA</span>!</div>
-<div class="welcome-subtitle">Siente la pasión del mundial y vibra con la banda sonora oficial.</div>
-<div class="section-label">BANDA SONORA OFICIAL</div>
+<div class="welcome-container">
+    <div class="welcome-title">¡BIENVENIDO A <span>FOXE ARENA</span>!</div>
+</div>
+<div class="music-header">
+    <div class="section-label">BANDA SONORA OFICIAL</div>
+</div>
 """, unsafe_allow_html=True)
 
 songs = load_songs()
 if not songs.empty:
     for index, row in songs.iterrows():
         url = str(row.get('url', ''))
-        img_max, img_high = get_thumbnail_urls(url)
-        
         st.markdown(f"""
         <div class="video-card">
             <a href="{url}" target="_blank" style="text-decoration:none;">
                 <div class="thumb-container">
-                    <img class="thumb-img" src="{img_max}" onerror="this.src='{img_high}';">
+                    <img class="thumb-img" src="{get_thumbnail(url)}">
                     <div class="play-btn"></div>
                 </div>
             </a>
             <div class="video-info">
-                <div class="v-title">{row.get('nombre', 'Sin nombre')}</div>
-                <div class="v-sub">{row.get('grupo', 'Artista')}</div>
+                <div class="v-title">{row.get('nombre', 'Baila Baila')}</div>
+                <div class="v-sub">{row.get('grupo', 'Himno Porra')}</div>
                 <a class="v-link" href="{url}" target="_blank">Ver en YouTube</a>
             </div>
         </div>

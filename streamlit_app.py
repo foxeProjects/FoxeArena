@@ -1,3 +1,5 @@
+
+
 import streamlit as st
 import pandas as pd
 import re
@@ -34,26 +36,12 @@ def load_songs():
         return df
     except: return pd.DataFrame()
 
-# ---------------- CSS ----------------
+# ---------------- CSS (MAQUETACIÓN DE ALTA CALIDAD) ----------------
 st.markdown(f"""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
 
-/* OCULTAR UI FORZADA STREAMLIT */
-#MainMenu {{visibility: hidden;}}
-header {{visibility: hidden;}}
-footer {{visibility: hidden;}}
-[data-testid="stToolbar"] {{display: none;}}
-[data-testid="stDecoration"] {{display: none;}}
-[data-testid="stStatusWidget"] {{display: none;}}
-[data-testid="stChatFloatingButton"] {{display: none;}}
-[data-testid="stFeedback"] {{display: none;}}
-
-/* Fuerza bruta: cualquier cosa fija abajo */
-div[style*="position: fixed"][style*="bottom"] {{
-    display: none !important;
-}}
-
+header {{ visibility: hidden; }}
 [data-testid="stAppViewContainer"] {{
     background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.85)), url("{ESTADIO}");
     background-size: cover;
@@ -62,11 +50,11 @@ div[style*="position: fixed"][style*="bottom"] {{
 
 .block-container {{ max-width: 450px; padding-top: 2rem; }}
 
+/* TEXTO GLOW */
 .welcome-container {{
     text-align: center;
     margin-bottom: 40px;
 }}
-
 .welcome-title {{
     font-size: 32px;
     font-weight: 900;
@@ -74,26 +62,51 @@ div[style*="position: fixed"][style*="bottom"] {{
     text-transform: uppercase;
     margin-bottom: 10px;
 }}
-
 .welcome-title span {{
     color: #f5c542;
     text-shadow: 0 0 20px rgba(245,197,66,0.8);
 }}
-
 .welcome-subtitle {{
     font-size: 16px;
     color: rgba(255,255,255,0.8);
     font-weight: 300;
     line-height: 1.4;
 }}
-
 .welcome-subtitle b {{ color: #f5c542; font-weight: 600; }}
 
+/* ICONOGRAFÍA SCROLL */
+.scroll-icon {{
+    margin: 30px auto;
+    width: 24px;
+    height: 40px;
+    border: 2px solid #f5c542;
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 0 15px rgba(245,197,66,0.4);
+}}
+.scroll-icon::before {{
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 8px;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 8px;
+    background: #f5c542;
+    border-radius: 2px;
+    animation: scroll-anim 2s infinite;
+}}
+@keyframes scroll-anim {{
+    0% {{ opacity: 1; top: 8px; }}
+    100% {{ opacity: 0; top: 20px; }}
+}}
+
+/* SECCIÓN MUSICA */
 .music-header {{
     text-align: center;
     margin-top: 50px;
 }}
-
+.music-header img {{ width: 30px; margin-bottom: 10px; filter: drop-shadow(0 0 8px #f5c542); }}
 .section-label {{
     font-size: 24px;
     font-weight: 800;
@@ -101,6 +114,7 @@ div[style*="position: fixed"][style*="bottom"] {{
     letter-spacing: 2px;
 }}
 
+/* CARD VIDEO */
 .video-card {{
     background: rgba(15, 15, 15, 0.85);
     border: 2px solid #f5c542;
@@ -110,11 +124,8 @@ div[style*="position: fixed"][style*="bottom"] {{
     margin-top: 20px;
     box-shadow: 0 0 40px rgba(245,197,66,0.25);
 }}
-
 .thumb-container {{ position: relative; width: 100%; aspect-ratio: 16/9; }}
-
 .thumb-img {{ width: 100%; height: 100%; object-fit: cover; }}
-
 .play-btn {{
     position: absolute;
     top: 50%; left: 50%;
@@ -123,8 +134,8 @@ div[style*="position: fixed"][style*="bottom"] {{
     background: rgba(255,0,0,0.9);
     border-radius: 50%;
     display: flex; justify-content: center; align-items: center;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }}
-
 .play-btn::after {{
     content: '';
     margin-left: 5px;
@@ -132,27 +143,42 @@ div[style*="position: fixed"][style*="bottom"] {{
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
 }}
-
 .video-info {{ padding: 20px; }}
-
-.v-title {{ font-size: 22px; font-weight: 700; color: #f5c542; }}
-
+.v-title {{ font-size: 22px; font-weight: 700; color: #f5c542; margin-bottom: 5px; }}
 .v-sub {{ color: #ffffff; opacity: 0.8; font-size: 14px; }}
+.v-link {{ color: #f5c542 !important; font-size: 13px; text-decoration: none; display: block; margin-top: 10px; }}
 
-.v-link {{ color: #f5c542 !important; font-size: 13px; text-decoration: none; }}
-
+/* FOOTER & ADMIN DISCRETO */
 .footer-box {{ text-align: center; margin-top: 50px; padding-bottom: 40px; }}
-
 .footer-logo {{ width: 50px; opacity: 0.8; margin-bottom: 10px; }}
-
 .footer-text {{ font-size: 11px; color: rgba(255,255,255,0.4); }}
+
+/* BOTON ADMIN DISCRETO */
+.stButton>button {{
+    background: transparent !important;
+    border: 1px solid rgba(245,197,66,0.2) !important;
+    color: rgba(255,255,255,0.3) !important;
+    font-size: 10px !important;
+    border-radius: 8px !important;
+    padding: 2px 10px !important;
+    width: auto !important;
+    margin: 10px auto !important;
+    display: block !important;
+}}
+.stButton>button:hover {{
+    color: #f5c542 !important;
+    border-color: #f5c542 !important;
+    background: rgba(245,197,66,0.05) !important;
+}}
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- UI ----------------
+# ---------------- ESTRUCTURA VISUAL ----------------
 
+# 1. LOGO PRINCIPAL
 st.markdown(f'<div style="text-align:center; margin-bottom:30px;"><img src="{LOGO}" width="180"></div>', unsafe_allow_html=True)
 
+# 2. BIENVENIDA (CLON DE LA IMAGEN 2)
 st.markdown("""
 <div class="welcome-container">
     <div class="welcome-title">¡BIENVENIDO A <span>FOXE ARENA</span>!</div>
@@ -160,9 +186,11 @@ st.markdown("""
         Siente la pasión del mundial, haz tus pronósticos<br>
         y vibra con la <b>banda sonora oficial</b>.
     </div>
+    
 </div>
 """, unsafe_allow_html=True)
 
+# 3. SECCIÓN MÚSICA
 st.markdown("""
 <div class="music-header">
     <div style="color:#f5c542; font-size:24px;">♫</div>
@@ -171,11 +199,13 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+# 4. CARD DINÁMICA
 songs = load_songs()
 if not songs.empty:
+    # Mostramos la última canción añadida (fila 0 o la última según tu sheet)
     row = songs.iloc[0] 
     url = str(row.get('url', ''))
-
+    
     st.markdown(f"""
     <div class="video-card">
         <a href="{url}" target="_blank" style="text-decoration:none;">
@@ -192,6 +222,7 @@ if not songs.empty:
     </div>
     """, unsafe_allow_html=True)
 
+# 5. FOOTER
 st.markdown(f"""
 <div class="footer-box">
     <img src="{LOGO}" class="footer-logo"><br>

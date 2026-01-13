@@ -3,7 +3,7 @@ import pandas as pd
 import re
 
 # ---------------- CONFIG ----------------
-st.set_page_config(page_title="FOXE ARENA", page_icon="🎵 ⚽️", layout="centered")
+st.set_page_config(page_title="FOXE ARENA", page_icon="⚽️", layout="centered")
 
 SHEET_ID = "1HBGfa4EygznWWdKk3CkcM-THGGsUDp6W"
 SONGS_URL = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/gviz/tq?tqx=out:csv&sheet=wc-songs"

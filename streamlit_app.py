@@ -31,7 +31,6 @@ def get_thumbnail(url):
         return f"https://img.youtube.com/vi/{vid}/hqdefault.jpg"
     return ""
 
-# ---------------- LOAD DATA ----------------
 @st.cache_data(ttl=30)
 def load_songs():
     return pd.read_csv(SONGS_URL)
@@ -41,11 +40,11 @@ def load_users():
     return pd.read_csv(USERS_URL)
 
 # ---------------- SESSION ----------------
-if "is_admin" not in st.session_state:
-    st.session_state.is_admin = False
-
 if "view" not in st.session_state:
     st.session_state.view = "home"
+
+if "is_admin" not in st.session_state:
+    st.session_state.is_admin = False
 
 # ---------------- CSS ----------------
 st.markdown(f"""
@@ -71,14 +70,19 @@ header {{ visibility: hidden; height: 0; }}
 a {{ color: #f5c542 !important; text-decoration: none; }}
 a:hover {{ text-decoration: underline; }}
 
+.logo-top {{
+  display:flex;
+  justify-content:center;
+  margin-bottom: 10px;
+}}
+.logo-top img {{
+  width: 120px;
+  filter: drop-shadow(0 0 15px rgba(245,197,66,0.4));
+}}
+
 .header {{
   text-align: center;
   margin-bottom: 20px;
-}}
-
-.header svg {{
-  width: 26px;
-  margin-bottom: 6px;
 }}
 
 .header-title {{
@@ -123,6 +127,11 @@ a:hover {{ text-decoration: underline; }}
   justify-content: center;
   align-items: center;
   box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+  transition: transform 0.2s ease;
+}}
+
+.play:hover {{
+  transform: translate(-50%, -50%) scale(1.05);
 }}
 
 .play:before {{
@@ -160,12 +169,14 @@ a:hover {{ text-decoration: underline; }}
   margin-bottom: 6px;
 }}
 
-.admin-btn .stButton>button {{
-  background: linear-gradient(180deg, #f5c542, #c4972f);
-  color: black;
-  border-radius: 18px;
-  font-weight: 600;
-  height: 44px;
+.admin-link {{
+  margin-top: 10px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  cursor: pointer;
+}}
+.admin-link:hover {{
+  color: #f5c542;
 }}
 </style>
 """, unsafe_allow_html=True)
@@ -174,36 +185,56 @@ a:hover {{ text-decoration: underline; }}
 
 songs = load_songs()
 
-st.markdown("""
-<div class="header">
-<svg viewBox="0 0 24 24" fill="#f5c542"><path d="M12 3v10.55a4 4 0 1 0 2 3.45V7h4V3h-6z"/></svg>
-<div class="header-title">BANDA SONORA OFICIAL</div>
-<div class="header-sub">Las últimas canciones añadidas a la porra</div>
+# LOGO
+st.markdown(f"""
+<div class="logo-top">
+  <img src="{LOGO}">
 </div>
 """, unsafe_allow_html=True)
 
-if not songs.empty:
-    row = songs.iloc[0]
-    thumb = get_thumbnail(row["url"])
+# HEADER
+st.markdown("""
+<div class="header">
+  <div class="header-title">BANDA SONORA OFICIAL</div>
+  <div class="header-sub">Las últimas canciones añadidas a la porra</div>
+</div>
+""", unsafe_allow_html=True)
+
+# HOME
+if st.session_state.view == "home":
+    if not songs.empty:
+        row = songs.iloc[0]
+        thumb = get_thumbnail(row["url"])
+
+        st.markdown(f"""
+        <div class="video-card">
+          <a href="{row["url"]}" target="_blank">
+            <div class="video-thumb">
+              <img src="{thumb}">
+              <div class="play"></div>
+            </div>
+          </a>
+          <div class="video-meta">
+            <div class="video-title">{row["nombre"]}</div>
+            <div class="video-sub">{row["grupo"]}</div>
+            <a href="{row["url"]}" target="_blank">Ver en YouTube</a>
+          </div>
+        </div>
+        """, unsafe_allow_html=True)
 
     st.markdown(f"""
-    <div class="video-card">
-      <div class="video-thumb">
-        <img src="{thumb}">
-        <div class="play"></div>
-      </div>
-      <div class="video-meta">
-        <div class="video-title">{row["nombre"]}</div>
-        <div class="video-sub">{row["grupo"]}</div>
-        <a href="{row["url"]}" target="_blank">🔗 Ver en YouTube</a>
-      </div>
+    <div class="footer">
+      <img src="{LOGO}"><br>
+      © 2026 FOXE ARENA. Todos los derechos reservados.
+      <div class="admin-link" onclick="window.location.reload()">Admin Portal</div>
     </div>
     """, unsafe_allow_html=True)
 
-# -------- ADMIN BUTTON --------
-if not st.session_state.is_admin:
+# LOGIN VIEW (separada)
+elif st.session_state.view == "login":
+    st.markdown("### Admin Portal")
+
     with st.form("login"):
-        st.markdown("### Admin Login")
         u = st.text_input("User")
         p = st.text_input("Password", type="password")
         if st.form_submit_button("Entrar"):
@@ -212,20 +243,7 @@ if not st.session_state.is_admin:
             if not match.empty:
                 st.session_state.is_admin = True
                 st.success("Login OK")
+                st.session_state.view = "home"
                 st.rerun()
             else:
                 st.error("Credenciales incorrectas")
-
-else:
-    st.markdown('<div class="admin-btn">', unsafe_allow_html=True)
-    if st.button("ENTRAR AL ADMIN PORTAL"):
-        st.info("Aquí irá el panel admin (siguiente mensaje)")
-    st.markdown('</div>', unsafe_allow_html=True)
-
-# ---------------- FOOTER ----------------
-st.markdown(f"""
-<div class="footer">
-  <img src="{LOGO}"><br>
-  © 2026 FOXE ARENA. Todos los derechos reservados.
-</div>
-""", unsafe_allow_html=True)

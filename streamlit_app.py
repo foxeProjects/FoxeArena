@@ -33,137 +33,156 @@ def load_songs():
         return df
     except: return pd.DataFrame()
 
-# ---------------- CSS (LIMPIEZA Y AJUSTE DE ESPACIOS) ----------------
-st.markdown(f"""
+# ---------------- CSS (LIMPIEZA RADICAL BASADA EN TU FOTO) ----------------
+st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
 
-/* OCULTAR ELEMENTOS DE STREAMLIT Y GITHUB */
-#MainMenu {{visibility: hidden;}}
-footer {{visibility: hidden;}}
-header {{visibility: hidden;}}
-button[title="View source on GitHub"] {{ display: none; }}
+/* Ocultar el menú principal, pie y cabecera */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
 
-[data-testid="stAppViewContainer"] {{
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url("{ESTADIO}");
+/* Ocultar botón flotante 'View source on GitHub' */
+button[title="View source on GitHub"] {display: none !important;}
+
+/* Ocultar botón flotante 'Deploy this app' */
+button[title="Deploy this app"] {display: none !important;}
+
+/* Ocultar botón flotante 'Share' */
+button[title="Share"] {display: none !important;}
+
+/* Ocultar el banner superior de Deploy/GitHub (Streamlit Cloud) */
+[data-testid="stHeader"] {visibility: hidden; height: 0;}
+[data-testid="stDecoration"] {display: none !important;}
+[data-testid="stDeployButton"] {display: none !important;}
+.stDeployButton {display: none !important;}
+
+/* GitHub Ribbon / banner overlay */
+a[href*="github.com"],
+a:has(img[alt="View source on GitHub"]),
+img[alt="View source on GitHub"] {display: none !important;}
+
+/* FONDO Y ESTILO DE APP */
+[data-testid="stAppViewContainer"] {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.85)), url("https://raw.githubusercontent.com/foxeProjects/FoxeArena/main/assets/8B390EC8-EB25-48F3-8838-76DE0F4416D9.png");
     background-size: cover;
     background-position: center;
-}}
+}
 
-.block-container {{ 
+.block-container { 
     max-width: 450px; 
-    padding-top: 1rem !important; 
-    padding-bottom: 0rem !important;
-}}
+    padding-top: 1.5rem !important; 
+}
 
 /* BIENVENIDA */
-.welcome-container {{
+.welcome-container {
     text-align: center;
-    margin-bottom: 10px; /* Reducido para acercar a la música */
-}}
-.welcome-title {{
+    margin-bottom: 10px;
+}
+.welcome-title {
     font-size: 30px;
     font-weight: 900;
     color: #FFFFFF;
     text-transform: uppercase;
     margin-bottom: 5px;
-}}
-.welcome-title span {{
+}
+.welcome-title span {
     color: #f5c542;
     text-shadow: 0 0 15px rgba(245,197,66,0.7);
-}}
-.welcome-subtitle {{
+}
+.welcome-subtitle {
     font-size: 15px;
     color: rgba(255,255,255,0.85);
     font-weight: 300;
     line-height: 1.3;
-}}
-.welcome-subtitle b {{ color: #f5c542; font-weight: 600; }}
+}
+.welcome-subtitle b { color: #f5c542; font-weight: 600; }
 
-/* SECCIÓN MUSICA - ESPACIO ELIMINADO */
-.music-header {{
+/* SECCIÓN MÚSICA */
+.music-header {
     text-align: center;
-    margin-top: 0px !important; /* Elimina espacio superior */
-    padding-top: 10px;
-}}
-.music-icon {{
+    margin-top: 0px !important;
+    padding-top: 5px;
+}
+.music-icon {
     color: #f5c542;
     font-size: 20px;
-    margin-bottom: -5px; /* Acerca el icono al texto */
-    filter: drop-shadow(0 0 5px #f5c542);
-}}
-.section-label {{
-    font-size: 22px;
+    margin-bottom: -10px;
+    display: block;
+}
+.section-label {
+    font-size: 24px;
     font-weight: 800;
     color: #f5c542;
     letter-spacing: 1px;
     margin-top: 5px;
-}}
-.section-sub {{
+}
+.section-sub {
     font-size: 11px;
-    color: rgba(255,255,255,0.5);
-    margin-top: -2px;
-}}
+    color: rgba(255,255,255,0.4);
+    margin-top: -5px;
+}
 
 /* CARD VIDEO */
-.video-card {{
-    background: rgba(20, 20, 20, 0.9);
-    border: 1.5px solid #f5c542;
-    border-radius: 20px;
+.video-card {
+    background: rgba(20, 20, 20, 0.95);
+    border: 2px solid #f5c542;
+    border-radius: 22px;
     overflow: hidden;
     margin-top: 15px;
     box-shadow: 0 0 30px rgba(245,197,66,0.2);
-}}
-.thumb-container {{ position: relative; width: 100%; aspect-ratio: 16/9; }}
-.thumb-img {{ width: 100%; height: 100%; object-fit: cover; }}
-.play-btn {{
+}
+.thumb-container { position: relative; width: 100%; aspect-ratio: 16/9; }
+.thumb-img { width: 100%; height: 100%; object-fit: cover; }
+.play-btn {
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    width: 55px; height: 55px;
+    width: 60px; height: 60px;
     background: #ff0000;
     border-radius: 50%;
     display: flex; justify-content: center; align-items: center;
-}}
-.play-btn::after {{
+}
+.play-btn::after {
     content: '';
-    margin-left: 4px;
-    border-left: 14px solid white;
+    margin-left: 5px;
+    border-left: 15px solid white;
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
-}}
-.video-info {{ padding: 15px 20px; }}
-.v-title {{ font-size: 20px; font-weight: 700; color: #f5c542; }}
-.v-sub {{ color: #ffffff; opacity: 0.9; font-size: 14px; margin-bottom: 8px; }}
-.v-link {{ color: #f5c542 !important; font-size: 12px; text-decoration: underline !important; }}
+}
+.video-info { padding: 18px 22px; }
+.v-title { font-size: 20px; font-weight: 700; color: #f5c542; }
+.v-sub { color: #ffffff; opacity: 1; font-size: 14px; margin-bottom: 10px; }
+.v-link { color: #f5c542 !important; font-size: 12px; text-decoration: underline !important; }
 
 /* FOOTER */
-.footer-box {{ text-align: center; margin-top: 30px; padding-bottom: 20px; }}
-.footer-logo {{ width: 40px; opacity: 0.9; margin-bottom: 5px; }}
-.footer-text {{ font-size: 10px; color: rgba(255,255,255,0.3); }}
+.footer-box { text-align: center; margin-top: 35px; padding-bottom: 25px; }
+.footer-logo { width: 45px; opacity: 1; margin-bottom: 5px; }
+.footer-text { font-size: 10px; color: rgba(255,255,255,0.4); }
 </style>
 """, unsafe_allow_html=True)
 
 # ---------------- ESTRUCTURA VISUAL ----------------
 
 # 1. LOGO PRINCIPAL
-st.markdown(f'<div style="text-align:center; margin-bottom:15px;"><img src="{LOGO}" width="160"></div>', unsafe_allow_html=True)
+st.markdown(f'<div style="text-align:center; margin-bottom:15px;"><img src="{LOGO}" width="165"></div>', unsafe_allow_html=True)
 
 # 2. BIENVENIDA
 st.markdown("""
 <div class="welcome-container">
     <div class="welcome-title">¡BIENVENIDO A <span>FOXE ARENA</span>!</div>
     <div class="welcome-subtitle">
-        Siente la pasión del mundial lo, haz tus pronósticos<br>
+        Siente la pasión del mundial, haz tus pronósticos<br>
         y vibra con la <b>banda sonora oficial</b>.
     </div>
 </div>
 """, unsafe_allow_html=True)
 
-# 3. SECCIÓN MÚSICA (ESPACIOS CORREGIDOS)
+# 3. SECCIÓN MÚSICA (CON ESPACIADO CORREGIDO)
 st.markdown("""
 <div class="music-header">
-    <div class="music-icon">♫</div>
+    <span class="music-icon">♫</span>
     <div class="section-label">BANDA SONORA OFICIAL</div>
     <div class="section-sub">Las últimas canciones añadidas a la porra</div>
 </div>

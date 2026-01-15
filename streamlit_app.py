@@ -5,18 +5,19 @@ import re
 # ---------------- CONFIG ----------------
 st.set_page_config(page_title="FOXE ARENA", page_icon="⚽️", layout="centered")
 
-# URL de tu Google Sheet
 SHEET_ID = "1HBGfa4EygznWWdKk3CkcM-THGGsUDp6W"
 SONGS_URL = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/gviz/tq?tqx=out:csv&sheet=wc-songs"
 
-# ASSETS
 LOGO = "https://raw.githubusercontent.com/foxeProjects/FoxeArena/main/assets/IMG_9234.png"
 
 # ---------------- HELPERS ----------------
 def get_video_id(url: str):
     if not isinstance(url, str): return None
-    # Soporta enlaces normales, cortos y shorts
-    patterns = [r"youtu\.be\/([^?&]+)", r"youtube\.com\/watch\?v=([^?&]+)", r"youtube\.com\/shorts\/([^?&]+)"]
+    patterns = [
+        r"youtu\.be\/([^?&]+)", 
+        r"youtube\.com\/watch\?v=([^?&]+)", 
+        r"youtube\.com\/shorts\/([^?&]+)"
+    ]
     for p in patterns:
         m = re.search(p, url)
         if m: return m.group(1)
@@ -24,7 +25,6 @@ def get_video_id(url: str):
 
 def get_thumbnail(url: str) -> str:
     vid = get_video_id(url)
-    # Usamos hqdefault.jpg porque es la más compatible y evita errores de carga
     return f"https://img.youtube.com/vi/{vid}/hqdefault.jpg" if vid else ""
 
 @st.cache_data(ttl=30)
@@ -36,18 +36,16 @@ def load_songs():
     except: 
         return pd.DataFrame()
 
-# ---------------- CSS (DISEÑO FINAL) ----------------
+# ---------------- CSS ----------------
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
 
-/* Ocultar elementos nativos de Streamlit */
 #MainMenu, footer, header, [data-testid="stHeader"], [data-testid="stDecoration"] {
     visibility: hidden; 
     display: none !important;
 }
 
-/* FONDO DINÁMICO */
 [data-testid="stAppViewContainer"] {
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.85)), 
                 url("https://raw.githubusercontent.com/foxeProjects/FoxeArena/main/assets/8B390EC8-EB25-48F3-8838-76DE0F4416D9.png");
@@ -61,18 +59,15 @@ st.markdown("""
     padding-top: 1.5rem !important; 
 }
 
-/* TEXTOS DE BIENVENIDA */
 .welcome-container { text-align: center; margin-bottom: 10px; }
 .welcome-title { font-size: 30px; font-weight: 900; color: #FFFFFF; text-transform: uppercase; }
 .welcome-title span { color: #f5c542; text-shadow: 0 0 15px rgba(245,197,66,0.7); }
 .welcome-subtitle { font-size: 15px; color: rgba(255,255,255,0.85); text-align: center; margin-bottom: 20px; }
 
-/* ENCABEZADO SECCIÓN */
 .music-header { text-align: center; padding-top: 5px; }
 .section-label { font-size: 24px; font-weight: 800; color: #f5c542; letter-spacing: 1px; }
 .section-sub { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: -5px; }
 
-/* CARD DE VIDEO MEJORADA */
 .video-card {
     background: rgba(20, 20, 20, 0.95);
     border: 2px solid #f5c542;
@@ -80,6 +75,11 @@ st.markdown("""
     overflow: hidden;
     margin-top: 15px;
     box-shadow: 0 0 30px rgba(245,197,66,0.2);
+}
+
+.video-card.destacado {
+    box-shadow: 0 0 60px rgba(245,197,66,0.6);
+    border: 3px solid #ffd700;
 }
 
 .thumb-container { 
@@ -93,7 +93,7 @@ st.markdown("""
 .thumb-img { 
     width: 100%; 
     height: 100%; 
-    object-fit: cover; /* Esto elimina las bandas negras laterales */
+    object-fit: cover; 
 }
 
 .play-btn {
@@ -119,17 +119,14 @@ st.markdown("""
 .v-sub { color: #ffffff; font-size: 14px; margin-bottom: 12px; opacity: 0.9; }
 .v-link { color: #f5c542 !important; font-size: 12px; text-decoration: underline !important; font-weight: 500; }
 
-/* FOOTER */
 .footer-box { text-align: center; margin-top: 40px; padding-bottom: 30px; }
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- ESTRUCTURA VISUAL ----------------
+# ---------------- UI ----------------
 
-# 1. LOGO PRINCIPAL
 st.markdown(f'<div style="text-align:center; margin-bottom:15px;"><img src="{LOGO}" width="165"></div>', unsafe_allow_html=True)
 
-# 2. BIENVENIDA
 st.markdown("""
 <div class="welcome-container">
     <div class="welcome-title">¡BIENVENIDO A <span>FOXE ARENA</span>!</div>
@@ -137,7 +134,6 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# 3. SECCIÓN MÚSICA
 st.markdown("""
 <div class="music-header">
     <div class="section-label">BANDA SONORA OFICIAL</div>
@@ -145,18 +141,25 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# 4. GENERACIÓN DE CARDS (BUCLE FOR)
+# ---------------- LOGICA DE ORDEN ----------------
+
 songs = load_songs()
+
 if not songs.empty:
-    # Este bucle itera sobre todas las filas de tu Google Sheet
-    for index, row in songs.iterrows():
+    first = songs.iloc[[0]]
+    rest = songs.iloc[1:][::-1]
+    songs = pd.concat([first, rest]).reset_index(drop=True)
+
+    for i, row in songs.iterrows():
         url = str(row.get('url', ''))
         thumb = get_thumbnail(url)
         nombre = row.get('nombre', 'Baila Baila')
         grupo = row.get('grupo', 'Himno Porra')
-        
+
+        destacado_class = "destacado" if i == 0 else ""
+
         st.markdown(f"""
-        <div class="video-card">
+        <div class="video-card {destacado_class}">
             <a href="{url}" target="_blank" style="text-decoration:none;">
                 <div class="thumb-container">
                     <img class="thumb-img" src="{thumb}">
@@ -170,10 +173,10 @@ if not songs.empty:
             </div>
         </div>
         """, unsafe_allow_html=True)
+
 else:
     st.info("Cargando banda sonora...")
 
-# 5. FOOTER
 st.markdown(f"""
 <div class="footer-box">
     <img src="{LOGO}" width="45"><br>
@@ -182,4 +185,3 @@ st.markdown(f"""
     </div>
 </div>
 """, unsafe_allow_html=True)
-

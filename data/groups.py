@@ -53,7 +53,7 @@ GROUPS = {
             _match("24 Jun", "Suiza", "\U0001f1e8\U0001f1ed", "Canada", "\U0001f1e8\U0001f1e6", 51, "Estadio BC Place, Vancouver"),
             _match("24 Jun", "Bosnia y Herzegovina", "\U0001f1e7\U0001f1e6", "Catar", "\U0001f1f6\U0001f1e6", 52, "Lumen Field, Seattle"),
         ],
-        "banner": None,
+        "banner": "assets/grupoB/bannerB.png",
         "mascots": {},
     },
     "C": {
@@ -71,7 +71,7 @@ GROUPS = {
             _match("24 Jun", "Escocia", "\U0001f3f4\U000e0067\U000e0062\U000e0073\U000e0063\U000e0074\U000e007f", "Brasil", "\U0001f1e7\U0001f1f7", 49, "Hard Rock Stadium, Miami"),
             _match("24 Jun", "Marruecos", "\U0001f1f2\U0001f1e6", "Haiti", "\U0001f1ed\U0001f1f9", 50, "Mercedes-Benz Stadium, Atlanta"),
         ],
-        "banner": None,
+        "banner": "assets/grupoC/bannerC.png",
         "mascots": {},
     },
     "D": {
@@ -89,7 +89,7 @@ GROUPS = {
             _match("25 Jun", "Turquia", "\U0001f1f9\U0001f1f7", "Estados Unidos", "\U0001f1fa\U0001f1f8", 59, "SoFi Stadium, Los Angeles"),
             _match("25 Jun", "Paraguay", "\U0001f1f5\U0001f1fe", "Australia", "\U0001f1e6\U0001f1fa", 60, "Levi's Stadium, San Francisco"),
         ],
-        "banner": None,
+        "banner": "assets/grupoD/bannerD.png",
         "mascots": {},
     },
     "E": {
@@ -107,7 +107,7 @@ GROUPS = {
             _match("25 Jun", "Ecuador", "\U0001f1ea\U0001f1e8", "Alemania", "\U0001f1e9\U0001f1ea", 56, "MetLife Stadium, Nueva Jersey"),
             _match("25 Jun", "Curazao", "\U0001f1e8\U0001f1fc", "Costa de Marfil", "\U0001f1e8\U0001f1ee", 55, "Lincoln Financial Field, Filadelfia"),
         ],
-        "banner": None,
+        "banner": "assets/grupoE/bannerE.png",
         "mascots": {},
     },
     "F": {
@@ -125,7 +125,7 @@ GROUPS = {
             _match("25 Jun", "Japon", "\U0001f1ef\U0001f1f5", "Suecia", "\U0001f1f8\U0001f1ea", 57, "Arrowhead Stadium, Kansas City"),
             _match("25 Jun", "Tunez", "\U0001f1f9\U0001f1f3", "Paises Bajos", "\U0001f1f3\U0001f1f1", 58, "AT&T Stadium, Dallas"),
         ],
-        "banner": None,
+        "banner": "assets/grupoF/bannerF.png",
         "mascots": {},
     },
     "G": {
@@ -143,7 +143,7 @@ GROUPS = {
             _match("26 Jun", "Nueva Zelanda", "\U0001f1f3\U0001f1ff", "Belgica", "\U0001f1e7\U0001f1ea", 64, "Estadio BC Place, Vancouver"),
             _match("26 Jun", "Egipto", "\U0001f1ea\U0001f1ec", "Iran", "\U0001f1ee\U0001f1f7", 63, "Lumen Field, Seattle"),
         ],
-        "banner": None,
+        "banner": "assets/grupoG/bannerG.png",
         "mascots": {},
     },
     "H": {
@@ -161,7 +161,7 @@ GROUPS = {
             _match("26 Jun", "Uruguay", "\U0001f1fa\U0001f1fe", "Espana", "\U0001f1ea\U0001f1f8", 66, "Estadio Chivas, Guadalajara"),
             _match("26 Jun", "Cabo Verde", "\U0001f1e8\U0001f1fb", "Arabia Saudita", "\U0001f1f8\U0001f1e6", 65, "NRG Stadium, Houston"),
         ],
-        "banner": None,
+        "banner": "assets/grupoH/bannerH.png",
         "mascots": {},
     },
     "I": {
@@ -179,7 +179,7 @@ GROUPS = {
             _match("26 Jun", "Noruega", "\U0001f1f3\U0001f1f4", "Francia", "\U0001f1eb\U0001f1f7", 61, "Gillette Stadium, Boston"),
             _match("26 Jun", "Senegal", "\U0001f1f8\U0001f1f3", "Irak", "\U0001f1ee\U0001f1f6", 62, "BMO Field, Toronto"),
         ],
-        "banner": None,
+        "banner": "assets/grupoI/bannerI.png",
         "mascots": {},
     },
     "J": {
@@ -197,7 +197,7 @@ GROUPS = {
             _match("27 Jun", "Jordania", "\U0001f1ef\U0001f1f4", "Argentina", "\U0001f1e6\U0001f1f7", 70, "AT&T Stadium, Dallas"),
             _match("27 Jun", "Argelia", "\U0001f1e9\U0001f1ff", "Austria", "\U0001f1e6\U0001f1f9", 69, "Arrowhead Stadium, Kansas City"),
         ],
-        "banner": None,
+        "banner": "assets/grupoJ/bannerJ.png",
         "mascots": {},
     },
     "K": {
@@ -215,7 +215,7 @@ GROUPS = {
             _match("27 Jun", "Colombia", "\U0001f1e8\U0001f1f4", "Portugal", "\U0001f1f5\U0001f1f9", 71, "Hard Rock Stadium, Miami"),
             _match("27 Jun", "R. D. del Congo", "\U0001f1e8\U0001f1e9", "Uzbekistan", "\U0001f1fa\U0001f1ff", 72, "Mercedes-Benz Stadium, Atlanta"),
         ],
-        "banner": None,
+        "banner": "assets/grupoK/bannerK.png",
         "mascots": {},
     },
     "L": {
@@ -233,7 +233,7 @@ GROUPS = {
             _match("27 Jun", "Panama", "\U0001f1f5\U0001f1e6", "Inglaterra", "\U0001f3f4\U000e0067\U000e0062\U000e0065\U000e006e\U000e0067\U000e007f", 67, "MetLife Stadium, Nueva Jersey"),
             _match("27 Jun", "Croacia", "\U0001f1ed\U0001f1f7", "Ghana", "\U0001f1ec\U0001f1ed", 68, "Lincoln Financial Field, Filadelfia"),
         ],
-        "banner": None,
+        "banner": "assets/grupoL/bannerL.png",
         "mascots": {},
     },
 }

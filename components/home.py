@@ -3,6 +3,7 @@ Home page: Logo, mascot placeholder, countdown to World Cup, YouTube channel.
 """
 import streamlit as st
 from datetime import datetime, timezone
+from components.styles import local_img_to_b64
 
 WC_START = datetime(2026, 6, 11, tzinfo=timezone.utc)
 
@@ -22,7 +23,6 @@ def _countdown():
 
 
 def render():
-    # --- Countdown ---
     cd = _countdown()
     if cd:
         d, h, m = cd
@@ -43,15 +43,13 @@ def render():
             '<div style="font-size:28px; font-weight:900; color:#f5c542;">EL MUNDIAL YA HA COMENZADO</div>'
             '</div>', unsafe_allow_html=True)
 
-    # --- Mascot placeholder ---
-    st.markdown(
-        '<div class="placeholder-card">'
-        '<div class="placeholder-icon">&#129418;</div>'
-        '<div class="placeholder-title">Mascota Oficial</div>'
-        '<div class="placeholder-sub">Proximamente se revelara la mascota de FOXE Arena 2026</div>'
-        '</div>', unsafe_allow_html=True)
+    portada = local_img_to_b64("assets/score-ia/portada.png")
+    if portada:
+        st.markdown(
+            '<div style="border-radius:20px; overflow:hidden; margin:14px 0; border:2px solid rgba(245,197,66,0.35); box-shadow:0 0 30px rgba(245,197,66,0.14);">'
+            f'<img src="{portada}" style="width:100%; display:block;">'
+            '</div>', unsafe_allow_html=True)
 
-    # --- YouTube channel promo ---
     st.markdown(
         '<div class="fa-card" style="text-align:center; padding:20px;">'
         f'<img src="{YT_LOGO}" width="48" style="margin-bottom:10px;">'

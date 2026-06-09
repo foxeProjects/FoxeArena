@@ -156,6 +156,24 @@ def render():
                 f'</div>', unsafe_allow_html=True)
 
     options = [f"Grupo {g}" for g in GROUP_LETTERS]
+    st.markdown(
+        '<style>'
+        'div[data-testid="stSelectbox"] label p {color:#f5c542 !important; font-weight:950 !important; text-transform:uppercase; letter-spacing:.08em;}'
+        'div[data-testid="stSelectbox"] div[data-baseweb="select"] > div {'
+        'background:linear-gradient(145deg,rgba(245,197,66,0.14),rgba(255,255,255,0.04)) !important;'
+        'border:1.5px solid rgba(245,197,66,0.45) !important; border-radius:14px !important;'
+        'box-shadow:0 0 18px rgba(245,197,66,0.10) !important;}'
+        'div[data-testid="stSelectbox"] div[data-baseweb="select"] span,'
+        'div[data-testid="stSelectbox"] div[data-baseweb="select"] input {color:#ffffff !important; font-weight:900 !important;}'
+        'div[data-testid="stSelectbox"] div[data-baseweb="select"] div {color:#ffffff !important;}'
+        'div[data-testid="stSelectbox"] div[data-baseweb="select"] [class*="singleValue"] {color:#ffffff !important; font-weight:950 !important;}'
+        'div[data-testid="stSelectbox"] svg {fill:#f5c542 !important;}'
+        'div[data-baseweb="popover"] ul {background:#111111 !important; border:1px solid rgba(245,197,66,0.38) !important; border-radius:12px !important;}'
+        'div[data-baseweb="popover"] li {background:#111111 !important; color:#ffffff !important; font-weight:850 !important;}'
+        'div[data-baseweb="popover"] li:hover, div[data-baseweb="popover"] li[aria-selected="true"] {background:rgba(245,197,66,0.18) !important; color:#f5c542 !important;}'
+        '</style>',
+        unsafe_allow_html=True,
+    )
     selected = st.selectbox("Pronostico por grupo", options, key="score_ia_group")
     letter = selected.replace("Grupo ", "")
     _render_group_prediction(letter)

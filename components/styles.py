@@ -76,8 +76,9 @@ h1, h2, h3, h4, p, span, div, label {{
     text-transform: uppercase;
 }}
 .section-hdr .sub {{
-    font-size: 11px;
-    color: rgba(255,255,255,0.45);
+    font-size: 12px;
+    color: rgba(255,255,255,0.72);
+    font-weight: 650;
     margin-top: -2px;
 }}
 
@@ -149,6 +150,26 @@ h1, h2, h3, h4, p, span, div, label {{
     padding: 14px 18px;
     margin: 8px 0;
 }}
+.match-card-pending {{
+    border-color: rgba(88,166,255,0.28);
+}}
+.match-card-finished {{
+    border-color: rgba(99,186,104,0.42);
+    background: linear-gradient(145deg, rgba(22,32,24,0.94), rgba(14,14,14,0.94));
+}}
+.match-card-knockout {{
+    border-color: rgba(158,54,103,0.45);
+    background: linear-gradient(145deg, rgba(35,15,28,0.94), rgba(14,14,14,0.94));
+}}
+.match-card-knockout-pending {{
+    border-color: rgba(158,54,103,0.45);
+    background: linear-gradient(145deg, rgba(35,15,28,0.94), rgba(14,14,14,0.94));
+}}
+.match-card-knockout-finished {{
+    border-color: rgba(245,197,66,0.58);
+    background: linear-gradient(145deg, rgba(58,43,12,0.96), rgba(16,12,6,0.96));
+    box-shadow: 0 0 24px rgba(245,197,66,0.16);
+}}
 .match-date {{
     font-size: 11px;
     color: rgba(255,255,255,0.5);
@@ -179,6 +200,478 @@ h1, h2, h3, h4, p, span, div, label {{
     padding: 2px 8px;
     border-radius: 8px;
     margin-bottom: 4px;
+}}
+.match-num-pending {{
+    background: rgba(88,166,255,0.14);
+    color: #85a4ff;
+    border: 1px solid rgba(88,166,255,0.24);
+}}
+.match-num-finished {{
+    background: rgba(99,186,104,0.15);
+    color: #63ba68;
+    border: 1px solid rgba(99,186,104,0.28);
+}}
+.match-num-knockout {{
+    background: rgba(158,54,103,0.18);
+    color: #c587a4;
+    border: 1px solid rgba(158,54,103,0.34);
+}}
+.match-num-knockout-pending {{
+    background: rgba(158,54,103,0.18);
+    color: #c587a4;
+    border: 1px solid rgba(158,54,103,0.34);
+}}
+.match-num-knockout-finished {{
+    background: rgba(245,197,66,0.20);
+    color: #f5c542;
+    border: 1px solid rgba(245,197,66,0.42);
+}}
+.match-insight-link {{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 10px;
+    padding: 7px 10px;
+    border-radius: 999px;
+    background: rgba(245,197,66,0.12);
+    border: 1px solid rgba(245,197,66,0.28);
+    color: {GOLD} !important;
+    font-size: 11px;
+    font-weight: 900;
+    text-decoration: none !important;
+}}
+.match-insight-link:hover {{
+    background: rgba(245,197,66,0.2);
+    border-color: rgba(245,197,66,0.55);
+}}
+.match-insight-link-pending {{
+    background: rgba(88,166,255,0.10);
+    border-color: rgba(88,166,255,0.26);
+    color: #85a4ff !important;
+}}
+.match-insight-link-pending:hover {{
+    background: rgba(88,166,255,0.18);
+    border-color: rgba(88,166,255,0.48);
+}}
+.match-insight-link-finished {{
+    background: rgba(99,186,104,0.12);
+    border-color: rgba(99,186,104,0.30);
+    color: #63ba68 !important;
+}}
+.match-insight-link-finished:hover {{
+    background: rgba(99,186,104,0.20);
+    border-color: rgba(99,186,104,0.52);
+}}
+.scoremap-wrap {{
+    overflow-x: auto;
+    padding-bottom: 2px;
+}}
+.scoremap-row {{
+    display: grid;
+    grid-template-columns: 34px repeat(9, minmax(42px, 1fr));
+    gap: 5px;
+    min-width: 440px;
+    margin-bottom: 5px;
+}}
+.scoremap-cell {{
+    min-height: 42px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 800;
+}}
+.scoremap-cell span {{
+    font-size: 10px;
+    opacity: 0.78;
+}}
+.scoremap-cell strong {{
+    font-size: 15px;
+    line-height: 1.1;
+}}
+.scoremap-axis,
+.scoremap-corner {{
+    min-height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.46);
+    font-size: 10px;
+    font-weight: 900;
+}}
+.match-kpi-grid {{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin: 12px 0;
+}}
+.match-kpi-card {{
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(145deg, rgba(25,25,25,0.96), rgba(8,8,8,0.96));
+    border: 1px solid rgba(245,197,66,0.26);
+    border-radius: 16px;
+    padding: 14px 12px;
+    min-height: 104px;
+    text-align: center;
+    box-shadow: 0 0 22px rgba(245,197,66,0.07);
+}}
+.match-kpi-card::before {{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(245,197,66,0.18), transparent 45%);
+    pointer-events: none;
+}}
+.match-kpi-icon {{
+    position: relative;
+    width: 30px;
+    height: 30px;
+    margin: 0 auto 6px auto;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(245,197,66,0.12);
+    color: {GOLD};
+    font-size: 15px;
+}}
+.match-kpi-value {{
+    position: relative;
+    color: {GOLD};
+    font-size: 25px;
+    line-height: 1;
+    font-weight: 950;
+    letter-spacing: -0.8px;
+}}
+.match-kpi-label {{
+    position: relative;
+    margin-top: 6px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}}
+.match-kpi-sub {{
+    position: relative;
+    margin-top: 4px;
+    color: rgba(255,255,255,0.45);
+    font-size: 10px;
+    line-height: 1.25;
+}}
+.match-banner-card {{
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1.5px solid rgba(245,197,66,0.35);
+    aspect-ratio: 16 / 9;
+    margin: 12px 0;
+    background: #050505;
+    box-shadow: 0 0 28px rgba(245,197,66,0.12);
+}}
+.match-banner-img {{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}}
+.match-banner-placeholder {{
+    border-radius: 20px;
+    border: 2px dashed rgba(245,197,66,0.34);
+    aspect-ratio: 16 / 9;
+    margin: 12px 0;
+    background:
+        radial-gradient(circle at 20% 15%, rgba(245,197,66,0.14), transparent 28%),
+        linear-gradient(145deg, rgba(26,26,26,0.96), rgba(7,7,7,0.96));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 18px;
+    box-shadow: inset 0 0 45px rgba(245,197,66,0.05);
+}}
+.match-event-card {{
+    margin: 12px 0 16px 0;
+    padding: 15px;
+    border-radius: 22px;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(245,197,66,0.14), transparent 30%),
+        linear-gradient(145deg, rgba(18,18,18,0.98), rgba(7,7,7,0.98));
+    border: 1.5px solid rgba(245,197,66,0.28);
+    box-shadow: 0 0 28px rgba(245,197,66,0.10);
+}}
+.match-event-photo {{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+}}
+.match-event-img {{
+    width: min(100%, 330px);
+    max-height: 520px;
+    aspect-ratio: 9 / 16;
+    object-fit: cover;
+    border-radius: 20px;
+    border: 2px solid rgba(245,197,66,0.32);
+    box-shadow: 0 0 28px rgba(245,197,66,0.14);
+}}
+.match-event-placeholder {{
+    width: min(100%, 330px);
+    aspect-ratio: 9 / 16;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    border: 2px dashed rgba(245,197,66,0.34);
+    color: {GOLD};
+    font-size: 16px;
+    font-weight: 950;
+    text-align: center;
+}}
+.match-event-placeholder span {{
+    color: rgba(255,255,255,0.42);
+    font-size: 10px;
+    margin-top: 8px;
+}}
+.match-experience-card {{
+    margin: -2px 0 14px 0;
+    padding: 14px 15px;
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 15% 0%, rgba(245,197,66,0.12), transparent 28%),
+        linear-gradient(145deg, rgba(18,18,18,0.98), rgba(7,7,7,0.98));
+    border: 1px solid rgba(245,197,66,0.22);
+    box-shadow: 0 0 22px rgba(245,197,66,0.08);
+}}
+.match-experience-title {{
+    color: {GOLD};
+    font-size: 13px;
+    font-weight: 950;
+    text-align: center;
+    margin-bottom: 8px;
+}}
+.match-experience-food {{
+    color: rgba(255,255,255,0.88);
+    font-size: 13px;
+    font-weight: 800;
+    text-align: center;
+    margin-top: 6px;
+}}
+.match-experience-food strong {{
+    color: {GOLD};
+}}
+.match-experience-grid {{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}}
+.match-experience-panel {{
+    background: rgba(0,0,0,0.18);
+    border: 1px solid rgba(245,197,66,0.16);
+    border-radius: 14px;
+    padding: 12px;
+    min-height: 92px;
+}}
+.match-experience-songs {{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+    margin-top: 6px;
+}}
+.match-experience-label {{
+    color: rgba(255,255,255,0.46);
+    font-size: 10px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+}}
+.match-experience-songs a,
+.match-experience-songs span {{
+    color: rgba(245,197,66,0.88) !important;
+    font-size: 11px;
+    font-weight: 850;
+    text-decoration: none !important;
+    text-align: center;
+}}
+.yt-icon {{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 12px;
+    margin-right: 6px;
+    border-radius: 4px;
+    background: #ff0000;
+    color: #ffffff !important;
+    font-size: 8px;
+    line-height: 1;
+    vertical-align: 1px;
+}}
+.match-experience-songs em {{
+    color: rgba(255,255,255,0.45);
+    font-style: normal;
+    font-weight: 700;
+}}
+@media (max-width: 720px) {{
+    .match-experience-grid {{
+        grid-template-columns: 1fr;
+    }}
+}}
+.country-inline-link {{
+    color: inherit !important;
+    text-decoration: none !important;
+    font-weight: 800;
+}}
+.country-inline-link:hover {{
+    color: {GOLD} !important;
+    text-shadow: 0 0 12px rgba(245,197,66,0.3);
+}}
+.country-match-nav {{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: -4px 0 12px 0;
+}}
+.country-match-nav a {{
+    color: {GOLD} !important;
+    text-decoration: none !important;
+    font-size: 13px;
+    font-weight: 950;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(245,197,66,0.1);
+    border: 1px solid rgba(245,197,66,0.22);
+}}
+.country-match-nav span {{
+    color: rgba(255,255,255,0.42);
+    font-size: 11px;
+    font-weight: 900;
+}}
+.country-hero-card {{
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1.5px solid rgba(245,197,66,0.35);
+    margin: 12px 0;
+    background: #050505;
+    box-shadow: 0 0 28px rgba(245,197,66,0.12);
+}}
+.country-hero-img {{
+    width: 100%;
+    display: block;
+}}
+.country-hero-placeholder {{
+    border-radius: 20px;
+    border: 2px dashed rgba(245,197,66,0.34);
+    margin: 12px 0;
+    background: linear-gradient(145deg, rgba(26,26,26,0.96), rgba(7,7,7,0.96));
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 18px;
+}}
+.country-info-card {{
+    padding: 16px !important;
+    text-align: center;
+}}
+.country-card-title {{
+    color: {GOLD};
+    font-size: 14px;
+    font-weight: 950;
+    text-align: center;
+    margin-bottom: 10px;
+}}
+.country-recipe-grid {{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}}
+.country-recipe-chip {{
+    color: rgba(255,255,255,0.86);
+    background: rgba(245,197,66,0.08);
+    border: 1px solid rgba(245,197,66,0.20);
+    border-radius: 999px;
+    padding: 7px 11px;
+    font-size: 12px;
+    font-weight: 800;
+}}
+.country-match-card {{
+    display: block;
+    border-radius: 14px;
+    padding: 12px 13px;
+    margin: 8px 0;
+    text-decoration: none !important;
+    background: linear-gradient(145deg, rgba(20,20,20,0.96), rgba(10,10,10,0.96));
+    border: 1px solid rgba(245,197,66,0.18);
+}}
+.country-match-pending {{
+    border-color: rgba(88,166,255,0.34);
+    background: linear-gradient(145deg, rgba(14,24,38,0.96), rgba(8,10,14,0.96));
+}}
+.country-match-finished {{
+    border-color: rgba(99,186,104,0.42);
+    background: linear-gradient(145deg, rgba(14,34,20,0.96), rgba(8,12,9,0.96));
+}}
+.country-match-knockout {{
+    border-color: rgba(158,54,103,0.42);
+    background: linear-gradient(145deg, rgba(35,15,28,0.96), rgba(8,8,10,0.96));
+}}
+.country-match-knockout-pending {{
+    border-color: rgba(158,54,103,0.42);
+    background: linear-gradient(145deg, rgba(35,15,28,0.96), rgba(8,8,10,0.96));
+}}
+.country-match-knockout-finished {{
+    border-color: rgba(245,197,66,0.58);
+    background: linear-gradient(145deg, rgba(58,43,12,0.96), rgba(8,8,10,0.96));
+    box-shadow: 0 0 22px rgba(245,197,66,0.14);
+}}
+.country-match-num {{
+    color: {GOLD};
+    font-size: 10px;
+    font-weight: 950;
+    margin-right: 8px;
+}}
+.country-match-date {{
+    color: rgba(255,255,255,0.45);
+    font-size: 10px;
+    font-weight: 800;
+}}
+.country-match-teams {{
+    color: #fff;
+    font-size: 14px;
+    font-weight: 900;
+    margin-top: 6px;
+}}
+.country-match-teams span {{
+    color: {GOLD};
+    margin: 0 6px;
+}}
+.country-match-stadium {{
+    color: rgba(255,255,255,0.42);
+    font-size: 10px;
+    margin-top: 5px;
+}}
+.country-scoreia-tip {{
+    color: rgba(245,197,66,0.86);
+    background: rgba(245,197,66,0.07);
+    border: 1px solid rgba(245,197,66,0.13);
+    border-radius: 10px;
+    padding: 7px 9px;
+    font-size: 11px;
+    font-weight: 850;
+    line-height: 1.35;
+    margin-top: 8px;
 }}
 
 /* ---------- Placeholder card ---------- */

@@ -18,16 +18,16 @@ Tiebreaker order:
 import streamlit as st
 import pandas as pd
 from data.groups import GROUPS
+from components.styles import PROJECT_ROOT
 
-SHEET_ID = "1HBGfa4EygznWWdKk3CkcM-THGGsUDp6W"
-RESULTS_URL = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/gviz/tq?tqx=out:csv&sheet=wc-results"
+RESULTS_PATH = PROJECT_ROOT / "assets" / "wc-results-template.csv"
 
 
 @st.cache_data(ttl=60)
 def load_results() -> pd.DataFrame:
-    """Load wc-results sheet. Returns empty DataFrame if unavailable."""
+    """Load local wc-results CSV. Returns empty DataFrame if unavailable."""
     try:
-        df = pd.read_csv(RESULTS_URL)
+        df = pd.read_csv(RESULTS_PATH)
         df.columns = [c.strip().lower() for c in df.columns]
         return df
     except Exception:

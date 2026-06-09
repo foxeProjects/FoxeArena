@@ -5,8 +5,10 @@ Standings and scores are read live from the wc-results Google Sheet.
 import streamlit as st
 import random
 import csv
+from urllib.parse import quote
 from data.groups import GROUPS, GROUP_LETTERS
 from data.results import compute_standings, get_match_scores
+from data.insights import get_match_insights, is_porra_closed
 from components.styles import PROJECT_ROOT, local_img_to_b64
 
 SCORE_IA_GROUP_TEASERS = [
@@ -65,7 +67,8 @@ def _render_table(group_letter):
     rows = ""
     for t in teams:
         pts_style = ' style="color:#f5c542; font-weight:700;"' if t["pts"] > 0 else ""
-        rows += (f'<tr><td>{t["name"]}</td>'
+        country_url = quote(t["name"])
+        rows += (f'<tr><td><a class="country-inline-link" href="?country={country_url}" target="_self">{t["name"]}</a></td>'
                  f'<td{pts_style}>{t["pts"]}</td><td>{t["pj"]}</td><td>{t["pg"]}</td>'
                  f'<td>{t["pe"]}</td><td>{t["pp"]}</td><td>{t["gf"]}</td>'
                  f'<td>{t["gc"]}</td><td>{t["dif"]}</td></tr>')
@@ -112,6 +115,7 @@ def _render_calendar(group_data, group_letter):
             mn = m["match_num"]
             result = scores.get(mn)
             score_ia = score_ia_predictions.get(mn)
+            insights = get_match_insights(mn) if is_porra_closed() else None
             score_ia_html = ""
             if score_ia:
                 p1, p2 = score_ia
@@ -122,26 +126,53 @@ def _render_calendar(group_data, group_letter):
 
             if result:
                 s1, s2 = result
+                team1_url = quote(m["team1"])
+                team2_url = quote(m["team2"])
                 teams_html = (
-                    f'<div class="match-teams">{m["team1"]}'
+                    f'<div class="match-teams"><a class="country-inline-link" href="?country={team1_url}" target="_self">{m["team1"]}</a>'
                     f'<span style="color:#f5c542; font-weight:900; margin:0 8px;">{s1} - {s2}</span>'
-                    f'{m["team2"]}</div>'
+                    f'<a class="country-inline-link" href="?country={team2_url}" target="_self">{m["team2"]}</a></div>'
                 )
-                card_style = 'border-color: rgba(245,197,66,0.4);'
+                card_class = "match-card match-card-finished"
+                badge_class = "match-num match-num-finished"
+                link_class = "match-insight-link match-insight-link-finished"
             else:
+                team1_url = quote(m["team1"])
+                team2_url = quote(m["team2"])
                 teams_html = (
-                    f'<div class="match-teams">{m["team1"]}'
+                    f'<div class="match-teams"><a class="country-inline-link" href="?country={team1_url}" target="_self">{m["team1"]}</a>'
                     f'<span class="match-vs">vs</span>'
-                    f'{m["team2"]}</div>'
+                    f'<a class="country-inline-link" href="?country={team2_url}" target="_self">{m["team2"]}</a></div>'
                 )
-                card_style = ''
+                card_class = "match-card match-card-pending"
+                badge_class = "match-num match-num-pending"
+                link_class = "match-insight-link match-insight-link-pending"
+
+            insight_html = ""
+            if insights and insights["total"]:
+                options = [
+                    (insights["home_win"], m["team1"]),
+                    (insights["draw"], "Empate"),
+                    (insights["away_win"], m["team2"]),
+                ]
+                top_votes, top_pick = max(options, key=lambda item: item[0])
+                top_pct = round((top_votes / insights["total"]) * 100)
+                score_counts = insights["score_counts"]
+                top_score = next(iter(score_counts)) if score_counts else ""
+                score_text = f" · marcador mas repetido: {top_score}" if top_score else ""
+                insight_html = (
+                    '<div style="font-size:11px; color:rgba(245,197,66,0.86); margin-top:5px; font-weight:800;">'
+                    f'&#128200; La porra va con {top_pick} ({top_pct}%){score_text}</div>'
+                )
 
             st.markdown(
-                f'<div class="match-card" style="{card_style}">'
-                f'<div class="match-num">Partido {mn}</div>'
+                f'<div class="{card_class}">'
+                f'<div class="{badge_class}">Partido {mn}</div>'
                 f'{teams_html}'
+                f'{insight_html}'
                 f'{score_ia_html}'
                 f'<div class="match-stadium">&#127967; {m["stadium"]}</div>'
+                f'<a class="{link_class}" href="?match={mn}" target="_self">&#128202; Abrir dashboard del partido</a>'
                 '</div>', unsafe_allow_html=True)
 
 

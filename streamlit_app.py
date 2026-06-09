@@ -1,9 +1,13 @@
 import streamlit as st
 from components.styles import inject_css, LOGO_URL
-from components import home, la_porra, banda_sonora, score_ia, grupos
+from components import home, la_porra, banda_sonora, score_ia, grupos, match_insights, country_page
 
 # ---------------- CONFIG ----------------
-st.set_page_config(page_title="FOXE ARENA", page_icon="⚽", layout="centered")
+st.set_page_config(
+    page_title="FOXE ARENA",
+    page_icon="assets/favicon.png",
+    layout="centered",
+)
 
 inject_css()
 
@@ -14,21 +18,31 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# ---------------- NAVIGATION (native tabs) ----------------
-tab_home, tab_porra, tab_soundtrack, tab_score, tab_grupos = st.tabs(
-    ["\U0001f3e0 Home", "\U0001f3c6 La Porra", "\U0001f3b5 Soundtrack", "\U0001f98a Score-IA", "\u26bd Grupos"]
-)
+match_param = st.query_params.get("match")
+country_param = st.query_params.get("country")
+if country_param:
+    country_page.render(country_param)
+elif match_param:
+    try:
+        match_insights.render(int(match_param))
+    except ValueError:
+        st.error("Partido no valido.")
+else:
+    # ---------------- NAVIGATION (native tabs) ----------------
+    tab_home, tab_porra, tab_soundtrack, tab_score, tab_grupos = st.tabs(
+        ["\U0001f3e0 Home", "\U0001f3c6 La Porra", "\U0001f3b5 Soundtrack", "\U0001f98a Score-IA", "\u26bd Grupos"]
+    )
 
-with tab_home:
-    home.render()
-with tab_porra:
-    la_porra.render()
-with tab_soundtrack:
-    banda_sonora.render()
-with tab_score:
-    score_ia.render()
-with tab_grupos:
-    grupos.render()
+    with tab_home:
+        home.render()
+    with tab_porra:
+        la_porra.render()
+    with tab_soundtrack:
+        banda_sonora.render()
+    with tab_score:
+        score_ia.render()
+    with tab_grupos:
+        grupos.render()
 
 # ---------------- FOOTER ----------------
 st.markdown(

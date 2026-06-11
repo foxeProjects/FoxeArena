@@ -1,76 +1,76 @@
 participante,match_num,group,date,team1,team2,pred1,pred2
 score-ia,1,A,11 Jun,Mexico,Sudafrica,2,1.0
-score-ia,2,A,11 Jun,Corea del Sur,Chequia,1,1.0
-score-ia,3,B,12 Jun,Chequia,Sudafrica,1,2.0
-score-ia,4,D,12 Jun,Mexico,Corea del Sur,1,1.0
-score-ia,5,C,13 Jun,Sudafrica,Corea del Sur,1,2.0
-score-ia,6,D,13 Jun,Chequia,Mexico,0,2.0
-score-ia,7,C,13 Jun,Canada,Bosnia y Herzegovina,2,1.0
-score-ia,8,B,13 Jun,Qatar,Suiza,0,1.0
-score-ia,9,E,14 Jun,Suiza,Bosnia y Herzegovina,1,1.0
-score-ia,10,E,14 Jun,Canada,Qatar,2,0.0
-score-ia,11,F,14 Jun,Bosnia y Herzegovina,Qatar,1,0.0
-score-ia,12,F,14 Jun,Suiza,Canada,2,2.0
-score-ia,13,H,15 Jun,Brasil,Marruecos,2,1.0
-score-ia,14,H,15 Jun,Haiti,Escocia,1,2.0
-score-ia,15,G,15 Jun,Escocia,Marruecos,1,1.0
-score-ia,16,G,15 Jun,Brasil,Haiti,3,1.0
-score-ia,17,I,16 Jun,Marruecos,Haiti,2,0.0
-score-ia,18,I,16 Jun,Brasil,Escocia,2,1.0
-score-ia,19,J,16 Jun,Estados Unidos,Paraguay,2,1.0
-score-ia,20,J,16 Jun,Australia,Turquia,1,2.0
-score-ia,21,L,17 Jun,Turquia,Paraguay,1,0.0
-score-ia,22,L,17 Jun,Estados Unidos,Australia,1,1.0
-score-ia,23,K,17 Jun,Paraguay,Australia,1,0.0
-score-ia,24,K,17 Jun,Turquia,Estados Unidos,2,2.0
-score-ia,25,A,18 Jun,Alemania,Curazao,3,0.0
-score-ia,26,B,18 Jun,Costa de Marfil,Ecuador,2,2.0
-score-ia,27,B,18 Jun,Alemania,Costa de Marfil,2,1.0
-score-ia,28,A,18 Jun,Ecuador,Curazao,2,0.0
-score-ia,29,C,19 Jun,Ecuador,Alemania,1,1.0
-score-ia,30,C,19 Jun,Curazao,Costa de Marfil,1,3.0
-score-ia,31,D,19 Jun,Paises Bajos,Japon,2,1.0
-score-ia,32,D,19 Jun,Suecia,Tunez,1,0.0
-score-ia,33,E,20 Jun,Paises Bajos,Suecia,1,1.0
-score-ia,34,E,20 Jun,Tunez,Japon,0,2.0
-score-ia,35,F,20 Jun,Japon,Suecia,2,1.0
-score-ia,36,F,20 Jun,Tunez,Paises Bajos,1,2.0
-score-ia,37,H,21 Jun,Iran,Nueva Zelanda,2,0.0
-score-ia,38,H,21 Jun,Belgica,Egipto,1,1.0
+score-ia,2,A,11 Jun,Corea del Sur,Republica Checa,1,1.0
+score-ia,25,B,12 Jun,Republica Checa,Sudafrica,1,2.0
+score-ia,28,D,12 Jun,Mexico,Corea del Sur,1,1.0
+score-ia,54,C,13 Jun,Sudafrica,Corea del Sur,1,2.0
+score-ia,53,D,13 Jun,Republica Checa,Mexico,0,2.0
+score-ia,3,C,13 Jun,Canada,Bosnia y Herzegovina,2,1.0
+score-ia,8,B,13 Jun,Catar,Suiza,0,1.0
+score-ia,26,E,14 Jun,Suiza,Bosnia y Herzegovina,1,1.0
+score-ia,27,E,14 Jun,Canada,Catar,2,0.0
+score-ia,52,F,14 Jun,Bosnia y Herzegovina,Catar,1,0.0
+score-ia,51,F,14 Jun,Suiza,Canada,2,2.0
+score-ia,7,H,15 Jun,Brasil,Marruecos,2,1.0
+score-ia,5,H,15 Jun,Haiti,Escocia,1,2.0
+score-ia,30,G,15 Jun,Escocia,Marruecos,1,1.0
+score-ia,29,G,15 Jun,Brasil,Haiti,3,1.0
+score-ia,50,I,16 Jun,Marruecos,Haiti,2,0.0
+score-ia,49,I,16 Jun,Brasil,Escocia,2,1.0
+score-ia,4,J,16 Jun,Estados Unidos,Paraguay,2,1.0
+score-ia,6,J,16 Jun,Australia,Turquia,1,2.0
+score-ia,31,L,17 Jun,Turquia,Paraguay,1,0.0
+score-ia,32,L,17 Jun,Estados Unidos,Australia,1,1.0
+score-ia,60,K,17 Jun,Paraguay,Australia,1,0.0
+score-ia,59,K,17 Jun,Turquia,Estados Unidos,2,2.0
+score-ia,9,A,18 Jun,Alemania,Curazao,3,0.0
+score-ia,10,B,18 Jun,Costa de Marfil,Ecuador,2,2.0
+score-ia,33,B,18 Jun,Alemania,Costa de Marfil,2,1.0
+score-ia,34,A,18 Jun,Ecuador,Curazao,2,0.0
+score-ia,56,C,19 Jun,Ecuador,Alemania,1,1.0
+score-ia,55,C,19 Jun,Curazao,Costa de Marfil,1,3.0
+score-ia,11,D,19 Jun,Paises Bajos,Japon,2,1.0
+score-ia,12,D,19 Jun,Suecia,Tunez,1,0.0
+score-ia,35,E,20 Jun,Paises Bajos,Suecia,1,1.0
+score-ia,36,E,20 Jun,Tunez,Japon,0,2.0
+score-ia,57,F,20 Jun,Japon,Suecia,2,1.0
+score-ia,58,F,20 Jun,Tunez,Paises Bajos,1,2.0
+score-ia,15,H,21 Jun,Iran,Nueva Zelanda,2,0.0
+score-ia,16,H,21 Jun,Belgica,Egipto,1,1.0
 score-ia,39,G,21 Jun,Belgica,Iran,2,1.0
 score-ia,40,G,21 Jun,Nueva Zelanda,Egipto,0,1.0
-score-ia,41,I,22 Jun,Nueva Zelanda,Belgica,0,2.0
-score-ia,42,I,22 Jun,Egipto,Iran,1,1.0
-score-ia,43,J,22 Jun,Espana,Cabo Verde,6,0.0
-score-ia,44,J,22 Jun,Arabia Saudita,Uruguay,1,1.0
-score-ia,45,L,23 Jun,Espana,Arabia Saudita,2,0.0
-score-ia,46,L,23 Jun,Uruguay,Cabo Verde,2,1.0
-score-ia,47,K,23 Jun,Cabo Verde,Arabia Saudita,1,1.0
-score-ia,48,K,23 Jun,Uruguay,Espana,1,2.0
-score-ia,49,C,24 Jun,Francia,Senegal,2,1.0
-score-ia,50,C,24 Jun,Irak,Noruega,1,2.0
-score-ia,51,B,24 Jun,Francia,Irak,3,0.0
-score-ia,52,B,24 Jun,Noruega,Senegal,1,1.0
-score-ia,53,A,24 Jun,Noruega,Francia,1,3.0
-score-ia,54,A,24 Jun,Senegal,Irak,2,0.0
-score-ia,55,E,25 Jun,Argentina,Argelia,3,1.0
-score-ia,56,E,25 Jun,Austria,Jordania,2,1.0
-score-ia,57,F,25 Jun,Argentina,Austria,2,2.0
-score-ia,58,F,25 Jun,Jordania,Argelia,1,2.0
-score-ia,59,D,25 Jun,Jordania,Argentina,1,3.0
-score-ia,60,D,25 Jun,Argelia,Austria,1,1.0
-score-ia,61,I,26 Jun,Portugal,Congo DR,2,1.0
-score-ia,62,I,26 Jun,Uzbekistan,Colombia,1,2.0
-score-ia,63,G,26 Jun,Portugal,Uzbekistan,1,1.0
-score-ia,64,G,26 Jun,Colombia,Congo DR,3,1.0
-score-ia,65,H,26 Jun,Colombia,Portugal,2,2.0
-score-ia,66,H,26 Jun,Congo DR,Uzbekistan,2,2.0
-score-ia,67,L,27 Jun,Inglaterra,Croacia,1,1.0
-score-ia,68,L,27 Jun,Ghana,Panama,2,0.0
-score-ia,69,J,27 Jun,Inglaterra,Ghana,2,1.0
-score-ia,70,J,27 Jun,Panama,Croacia,0,1.0
-score-ia,71,K,27 Jun,Panama,Inglaterra,0,3.0
-score-ia,72,K,27 Jun,Croacia,Ghana,1,1.0
+score-ia,64,I,22 Jun,Nueva Zelanda,Belgica,0,2.0
+score-ia,63,I,22 Jun,Egipto,Iran,1,1.0
+score-ia,14,J,22 Jun,Espana,Cabo Verde,6,0.0
+score-ia,13,J,22 Jun,Arabia Saudita,Uruguay,1,1.0
+score-ia,38,L,23 Jun,Espana,Arabia Saudita,2,0.0
+score-ia,37,L,23 Jun,Uruguay,Cabo Verde,2,1.0
+score-ia,65,K,23 Jun,Cabo Verde,Arabia Saudita,1,1.0
+score-ia,66,K,23 Jun,Uruguay,Espana,1,2.0
+score-ia,17,C,24 Jun,Francia,Senegal,2,1.0
+score-ia,18,C,24 Jun,Irak,Noruega,1,2.0
+score-ia,42,B,24 Jun,Francia,Irak,3,0.0
+score-ia,41,B,24 Jun,Noruega,Senegal,1,1.0
+score-ia,61,A,24 Jun,Noruega,Francia,1,3.0
+score-ia,62,A,24 Jun,Senegal,Irak,2,0.0
+score-ia,19,E,25 Jun,Argentina,Argelia,3,1.0
+score-ia,20,E,25 Jun,Austria,Jordania,2,1.0
+score-ia,43,F,25 Jun,Argentina,Austria,2,2.0
+score-ia,44,F,25 Jun,Jordania,Argelia,1,2.0
+score-ia,70,D,25 Jun,Jordania,Argentina,1,3.0
+score-ia,69,D,25 Jun,Argelia,Austria,1,1.0
+score-ia,23,I,26 Jun,Portugal,R. D. del Congo,2,1.0
+score-ia,24,I,26 Jun,Uzbekistan,Colombia,1,2.0
+score-ia,47,G,26 Jun,Portugal,Uzbekistan,1,1.0
+score-ia,48,G,26 Jun,Colombia,R. D. del Congo,3,1.0
+score-ia,71,H,26 Jun,Colombia,Portugal,2,2.0
+score-ia,72,H,26 Jun,R. D. del Congo,Uzbekistan,2,2.0
+score-ia,22,L,27 Jun,Inglaterra,Croacia,1,1.0
+score-ia,21,L,27 Jun,Ghana,Panama,2,0.0
+score-ia,45,J,27 Jun,Inglaterra,Ghana,2,1.0
+score-ia,46,J,27 Jun,Panama,Croacia,0,1.0
+score-ia,67,K,27 Jun,Panama,Inglaterra,0,3.0
+score-ia,68,K,27 Jun,Croacia,Ghana,1,1.0
 score-ia,73,1o GRUPO,,Primero del Grupo A,,Mexico,
 score-ia,74,2o GRUPO,,Segundo del Grupo A,,Corea del Sur,
 score-ia,75,1o GRUPO,,Primero del Grupo B,,Canada,

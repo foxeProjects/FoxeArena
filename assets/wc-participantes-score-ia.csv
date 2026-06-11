@@ -1,145 +1,144 @@
-participante,match_num,group,date,team1,team2,pred1,pred2
-score-ia,1,A,11 Jun,Mexico,Sudafrica,2,1
-score-ia,2,A,11 Jun,Corea del Sur,Republica Checa,1,1
-score-ia,3,B,12 Jun,Canada,Bosnia y Herzegovina,2,1
-score-ia,4,D,12 Jun,Estados Unidos,Paraguay,2,1
-score-ia,5,C,13 Jun,Haiti,Escocia,1,2
-score-ia,6,D,13 Jun,Australia,Turquia,1,2
-score-ia,7,C,13 Jun,Brasil,Marruecos,2,1
-score-ia,8,B,13 Jun,Catar,Suiza,0,1
-score-ia,9,E,14 Jun,Alemania,Curazao,3,0
-score-ia,10,E,14 Jun,Costa de Marfil,Ecuador,2,2
-score-ia,11,F,14 Jun,Paises Bajos,Japon,2,1
-score-ia,12,F,14 Jun,Suecia,Tunez,1,0
-score-ia,13,H,15 Jun,Arabia Saudita,Uruguay,1,1
-score-ia,14,H,15 Jun,Espana,Cabo Verde,6,0
-score-ia,15,G,15 Jun,Iran,Nueva Zelanda,2,0
-score-ia,16,G,15 Jun,Belgica,Egipto,1,1
-score-ia,17,I,16 Jun,Francia,Senegal,2,1
-score-ia,18,I,16 Jun,Irak,Noruega,1,2
-score-ia,19,J,16 Jun,Argentina,Argelia,3,1
-score-ia,20,J,16 Jun,Austria,Jordania,2,1
-score-ia,21,L,17 Jun,Ghana,Panama,2,0
-score-ia,22,L,17 Jun,Inglaterra,Croacia,1,1
-score-ia,23,K,17 Jun,Portugal,R. D. del Congo,2,1
-score-ia,24,K,17 Jun,Uzbekistan,Colombia,1,2
-score-ia,25,A,18 Jun,Republica Checa,Sudafrica,1,2
-score-ia,26,B,18 Jun,Suiza,Bosnia y Herzegovina,1,1
-score-ia,27,B,18 Jun,Canada,Catar,2,0
-score-ia,28,A,18 Jun,Mexico,Corea del Sur,1,1
-score-ia,29,C,19 Jun,Brasil,Haiti,3,1
-score-ia,30,C,19 Jun,Escocia,Marruecos,1,1
-score-ia,31,D,19 Jun,Turquia,Paraguay,1,0
-score-ia,32,D,19 Jun,Estados Unidos,Australia,1,1
-score-ia,33,E,20 Jun,Alemania,Costa de Marfil,2,1
-score-ia,34,E,20 Jun,Ecuador,Curazao,2,0
-score-ia,35,F,20 Jun,Paises Bajos,Suecia,1,1
-score-ia,36,F,20 Jun,Tunez,Japon,0,2
-score-ia,37,H,21 Jun,Uruguay,Cabo Verde,2,1
-score-ia,38,H,21 Jun,Espana,Arabia Saudita,2,0
-score-ia,39,G,21 Jun,Belgica,Iran,2,1
-score-ia,40,G,21 Jun,Nueva Zelanda,Egipto,0,1
-score-ia,41,I,22 Jun,Noruega,Senegal,1,1
-score-ia,42,I,22 Jun,Francia,Irak,3,0
-score-ia,43,J,22 Jun,Argentina,Austria,2,2
-score-ia,44,J,22 Jun,Jordania,Argelia,1,2
-score-ia,45,L,23 Jun,Inglaterra,Ghana,2,1
-score-ia,46,L,23 Jun,Panama,Croacia,0,1
-score-ia,47,K,23 Jun,Portugal,Uzbekistan,1,1
-score-ia,48,K,23 Jun,Colombia,R. D. del Congo,3,1
-score-ia,49,C,24 Jun,Escocia,Brasil,1,2
-score-ia,50,C,24 Jun,Marruecos,Haiti,2,0
-score-ia,51,B,24 Jun,Suiza,Canada,2,2
-score-ia,52,B,24 Jun,Bosnia y Herzegovina,Catar,1,0
-score-ia,53,A,24 Jun,Republica Checa,Mexico,0,2
-score-ia,54,A,24 Jun,Sudafrica,Corea del Sur,1,2
-score-ia,55,E,25 Jun,Curazao,Costa de Marfil,1,3
-score-ia,56,E,25 Jun,Ecuador,Alemania,1,1
-score-ia,57,F,25 Jun,Japon,Suecia,2,1
-score-ia,58,F,25 Jun,Tunez,Paises Bajos,1,2
-score-ia,59,D,25 Jun,Turquia,Estados Unidos,2,2
-score-ia,60,D,25 Jun,Paraguay,Australia,1,0
-score-ia,61,I,26 Jun,Noruega,Francia,1,3
-score-ia,62,I,26 Jun,Senegal,Irak,2,0
-score-ia,63,G,26 Jun,Egipto,Iran,1,1
-score-ia,64,G,26 Jun,Nueva Zelanda,Belgica,0,2
-score-ia,65,H,26 Jun,Cabo Verde,Arabia Saudita,1,1
-score-ia,66,H,26 Jun,Uruguay,Espana,1,2
-score-ia,67,L,27 Jun,Panama,Inglaterra,1,3
-score-ia,68,L,27 Jun,Croacia,Ghana,1,1
-score-ia,69,J,27 Jun,Argelia,Austria,1,1
-score-ia,70,J,27 Jun,Jordania,Argentina,1,3
-score-ia,71,K,27 Jun,Colombia,Portugal,2,2
-score-ia,72,K,27 Jun,R. D. del Congo,Uzbekistan,2,2
-score-ia,73,1o GRUPO,,Primero del Grupo A,,,
-score-ia,74,2o GRUPO,,Segundo del Grupo A,,,
-score-ia,75,1o GRUPO,,Primero del Grupo B,,,
-score-ia,76,2o GRUPO,,Segundo del Grupo B,,,
-score-ia,77,1o GRUPO,,Primero del Grupo C,,,
-score-ia,78,2o GRUPO,,Segundo del Grupo C,,,
-score-ia,79,1o GRUPO,,Primero del Grupo D,,,
-score-ia,80,2o GRUPO,,Segundo del Grupo D,,,
-score-ia,81,1o GRUPO,,Primero del Grupo E,,,
-score-ia,82,2o GRUPO,,Segundo del Grupo E,,,
-score-ia,83,1o GRUPO,,Primero del Grupo F,,,
-score-ia,84,2o GRUPO,,Segundo del Grupo F,,,
-score-ia,85,1o GRUPO,,Primero del Grupo G,,,
-score-ia,86,2o GRUPO,,Segundo del Grupo G,,,
-score-ia,87,1o GRUPO,,Primero del Grupo H,,,
-score-ia,88,2o GRUPO,,Segundo del Grupo H,,,
-score-ia,89,1o GRUPO,,Primero del Grupo I,,,
-score-ia,90,2o GRUPO,,Segundo del Grupo I,,,
-score-ia,91,1o GRUPO,,Primero del Grupo J,,,
-score-ia,92,2o GRUPO,,Segundo del Grupo J,,,
-score-ia,93,1o GRUPO,,Primero del Grupo K,,,
-score-ia,94,2o GRUPO,,Segundo del Grupo K,,,
-score-ia,95,1o GRUPO,,Primero del Grupo L,,,
-score-ia,96,2o GRUPO,,Segundo del Grupo L,,,
-score-ia,97,MEJOR 3o,,Tercer clasificado 1,,,
-score-ia,98,MEJOR 3o,,Tercer clasificado 2,,,
-score-ia,99,MEJOR 3o,,Tercer clasificado 3,,,
-score-ia,100,MEJOR 3o,,Tercer clasificado 4,,,
-score-ia,101,MEJOR 3o,,Tercer clasificado 5,,,
-score-ia,102,MEJOR 3o,,Tercer clasificado 6,,,
-score-ia,103,MEJOR 3o,,Tercer clasificado 7,,,
-score-ia,104,MEJOR 3o,,Tercer clasificado 8,,,
-score-ia,105,16AVOS,,2A vs 2B,,,
-score-ia,106,16AVOS,,1E vs 3A/B/C/D/F,,,
-score-ia,107,16AVOS,,1F vs 2C,,,
-score-ia,108,16AVOS,,1C vs 2F,,,
-score-ia,109,16AVOS,,1I vs 3C/D/F/G/H,,,
-score-ia,110,16AVOS,,2E vs 2I,,,
-score-ia,111,16AVOS,,1A vs 3C/E/F/H/I,,,
-score-ia,112,16AVOS,,1L vs 3E/H/I/J/K,,,
-score-ia,113,16AVOS,,1D vs 3B/E/F/I/J,,,
-score-ia,114,16AVOS,,1G vs 3A/E/H/I/J,,,
-score-ia,115,16AVOS,,2K vs 2L,,,
-score-ia,116,16AVOS,,1H vs 2J,,,
-score-ia,117,16AVOS,,1B vs 3E/F/G/I/J,,,
-score-ia,118,16AVOS,,1J vs 2H,,,
-score-ia,119,16AVOS,,1K vs 3D/E/I/J/L,,,
-score-ia,120,16AVOS,,2D vs 2G,,,
-score-ia,121,OCTAVOS,,Ganador P105 vs Ganador P106,,,
-score-ia,122,OCTAVOS,,Ganador P107 vs Ganador P108,,,
-score-ia,123,OCTAVOS,,Ganador P109 vs Ganador P110,,,
-score-ia,124,OCTAVOS,,Ganador P111 vs Ganador P112,,,
-score-ia,125,OCTAVOS,,Ganador P113 vs Ganador P114,,,
-score-ia,126,OCTAVOS,,Ganador P115 vs Ganador P116,,,
-score-ia,127,OCTAVOS,,Ganador P117 vs Ganador P118,,,
-score-ia,128,OCTAVOS,,Ganador P119 vs Ganador P120,,,
-score-ia,129,CUARTOS,,Ganador P121 vs Ganador P122,,,
-score-ia,130,CUARTOS,,Ganador P123 vs Ganador P124,,,
-score-ia,131,CUARTOS,,Ganador P125 vs Ganador P126,,,
-score-ia,132,CUARTOS,,Ganador P127 vs Ganador P128,,,
-score-ia,133,SEMIFINAL,,Ganador P129 vs Ganador P130,,,
-score-ia,134,SEMIFINAL,,Ganador P131 vs Ganador P132,,,
-score-ia,135,3er PUESTO,,Perdedor P133 vs Perdedor P134,,,
-score-ia,136,FINAL,,Ganador P133 vs Ganador P134,,,
-score-ia,137,PODIO,,CAMPEON,,,
-score-ia,138,PODIO,,SUBCAMPEON,,,
-score-ia,139,PODIO,,TERCER LUGAR,,,
-score-ia,140,BONUS,,Maximo goleador (Bota de Oro),,,
-score-ia,141,BONUS,,Mejor portero (Guante de Oro),,,
-score-ia,142,BONUS,,Mejor jugador (Balon de Oro),,,
-score-ia,143,BONUS,,Mejor jugador joven (sub-21),,,
-score-ia,144,BONUS,,Seleccion FAIR PLAY,,,
+ore-ia,1,A,11 Jun,México,Sudáfrica,2,1.0
+score-ia,2,A,11 Jun,Corea del Sur,Chequia,1,1.0
+score-ia,3,B,12 Jun,Chequia,Sudáfrica,1,2.0
+score-ia,4,D,12 Jun,México,Corea del Sur,1,1.0
+score-ia,5,C,13 Jun,Sudáfrica,Corea del Sur,1,2.0
+score-ia,6,D,13 Jun,Chequia,México,0,2.0
+score-ia,7,C,13 Jun,Canadá,Bosnia y Herzegovina,2,1.0
+score-ia,8,B,13 Jun,Qatar,Suiza,0,1.0
+score-ia,9,E,14 Jun,Suiza,Bosnia y Herzegovina,1,1.0
+score-ia,10,E,14 Jun,Canadá,Qatar,2,0.0
+score-ia,11,F,14 Jun,Bosnia y Herzegovina,Qatar,1,0.0
+score-ia,12,F,14 Jun,Suiza,Canadá,2,2.0
+score-ia,13,H,15 Jun,Brasil,Marruecos,2,1.0
+score-ia,14,H,15 Jun,Haití,Escocia,1,2.0
+score-ia,15,G,15 Jun,Escocia,Marruecos,1,1.0
+score-ia,16,G,15 Jun,Brasil,Haití,3,1.0
+score-ia,17,I,16 Jun,Marruecos,Haití,2,0.0
+score-ia,18,I,16 Jun,Brasil,Escocia,2,1.0
+score-ia,19,J,16 Jun,Estados Unidos,Paraguay,2,1.0
+score-ia,20,J,16 Jun,Australia,Turquía,1,2.0
+score-ia,21,L,17 Jun,Turquía,Paraguay,1,0.0
+score-ia,22,L,17 Jun,Estados Unidos,Australia,1,1.0
+score-ia,23,K,17 Jun,Paraguay,Australia,1,0.0
+score-ia,24,K,17 Jun,Turquía,Estados Unidos,2,2.0
+score-ia,25,A,18 Jun,Alemania,Curazao,3,0.0
+score-ia,26,B,18 Jun,Costa de Marfil,Ecuador,2,2.0
+score-ia,27,B,18 Jun,Alemania,Costa de Marfil,2,1.0
+score-ia,28,A,18 Jun,Ecuador,Curazao,2,0.0
+score-ia,29,C,19 Jun,Ecuador,Alemania,1,1.0
+score-ia,30,C,19 Jun,Curazao,Costa de Marfil,1,3.0
+score-ia,31,D,19 Jun,Países Bajos,Japón,2,1.0
+score-ia,32,D,19 Jun,Suecia,Túnez,1,0.0
+score-ia,33,E,20 Jun,Países Bajos,Suecia,1,1.0
+score-ia,34,E,20 Jun,Túnez,Japón,0,2.0
+score-ia,35,F,20 Jun,Japón,Suecia,2,1.0
+score-ia,36,F,20 Jun,Túnez,Países Bajos,1,2.0
+score-ia,37,H,21 Jun,Irán,Nueva Zelanda,2,0.0
+score-ia,38,H,21 Jun,Bélgica,Egipto,1,1.0
+score-ia,39,G,21 Jun,Bélgica,Irán,2,1.0
+score-ia,40,G,21 Jun,Nueva Zelanda,Egipto,0,1.0
+score-ia,41,I,22 Jun,Nueva Zelanda,Bélgica,0,2.0
+score-ia,42,I,22 Jun,Egipto,Irán,1,1.0
+score-ia,43,J,22 Jun,España,Cabo Verde,6,0.0
+score-ia,44,J,22 Jun,Arabia Saudita,Uruguay,1,1.0
+score-ia,45,L,23 Jun,España,Arabia Saudita,2,0.0
+score-ia,46,L,23 Jun,Uruguay,Cabo Verde,2,1.0
+score-ia,47,K,23 Jun,Cabo Verde,Arabia Saudita,1,1.0
+score-ia,48,K,23 Jun,Uruguay,España,1,2.0
+score-ia,49,C,24 Jun,Francia,Senegal,2,1.0
+score-ia,50,C,24 Jun,Irak,Noruega,1,2.0
+score-ia,51,B,24 Jun,Francia,Irak,3,0.0
+score-ia,52,B,24 Jun,Noruega,Senegal,1,1.0
+score-ia,53,A,24 Jun,Noruega,Francia,1,3.0
+score-ia,54,A,24 Jun,Senegal,Irak,2,0.0
+score-ia,55,E,25 Jun,Argentina,Argelia,3,1.0
+score-ia,56,E,25 Jun,Austria,Jordania,2,1.0
+score-ia,57,F,25 Jun,Argentina,Austria,2,2.0
+score-ia,58,F,25 Jun,Jordania,Argelia,1,2.0
+score-ia,59,D,25 Jun,Jordania,Argentina,1,3.0
+score-ia,60,D,25 Jun,Argelia,Austria,1,1.0
+score-ia,61,I,26 Jun,Portugal,Congo DR,2,1.0
+score-ia,62,I,26 Jun,Uzbekistán,Colombia,1,2.0
+score-ia,63,G,26 Jun,Portugal,Uzbekistán,1,1.0
+score-ia,64,G,26 Jun,Colombia,Congo DR,3,1.0
+score-ia,65,H,26 Jun,Colombia,Portugal,2,2.0
+score-ia,66,H,26 Jun,Congo DR,Uzbekistán,2,2.0
+score-ia,67,L,27 Jun,Inglaterra,Croacia,1,1.0
+score-ia,68,L,27 Jun,Ghana,Panamá,2,0.0
+score-ia,69,J,27 Jun,Inglaterra,Ghana,2,1.0
+score-ia,70,J,27 Jun,Panamá,Croacia,0,1.0
+score-ia,71,K,27 Jun,Panamá,Inglaterra,0,3.0
+score-ia,72,K,27 Jun,Croacia,Ghana,1,1.0
+score-ia,73,1o GRUPO,,Primero del Grupo A,,México,
+score-ia,74,2o GRUPO,,Segundo del Grupo A,,Corea del Sur,
+score-ia,75,1o GRUPO,,Primero del Grupo B,,Canadá,
+score-ia,76,2o GRUPO,,Segundo del Grupo B,,Suiza,
+score-ia,77,1o GRUPO,,Primero del Grupo C,,Brasil,
+score-ia,78,2o GRUPO,,Segundo del Grupo C,,Marruecos,
+score-ia,79,1o GRUPO,,Primero del Grupo D,,Turquía,
+score-ia,80,2o GRUPO,,Segundo del Grupo D,,Estados Unidos,
+score-ia,81,1o GRUPO,,Primero del Grupo E,,Alemania,
+score-ia,82,2o GRUPO,,Segundo del Grupo E,,Ecuador,
+score-ia,83,1o GRUPO,,Primero del Grupo F,,Países Bajos,
+score-ia,84,2o GRUPO,,Segundo del Grupo F,,Japón,
+score-ia,85,1o GRUPO,,Primero del Grupo G,,Bélgica,
+score-ia,86,2o GRUPO,,Segundo del Grupo G,,Egipto,
+score-ia,87,1o GRUPO,,Primero del Grupo H,,España,
+score-ia,88,2o GRUPO,,Segundo del Grupo H,,Uruguay,
+score-ia,89,1o GRUPO,,Primero del Grupo I,,Francia,
+score-ia,90,2o GRUPO,,Segundo del Grupo I,,Senegal,
+score-ia,91,1o GRUPO,,Primero del Grupo J,,Argentina,
+score-ia,92,2o GRUPO,,Segundo del Grupo J,,Austria,
+score-ia,93,1o GRUPO,,Primero del Grupo K,,Colombia,
+score-ia,94,2o GRUPO,,Segundo del Grupo K,,Portugal,
+score-ia,95,1o GRUPO,,Primero del Grupo L,,Inglaterra,
+score-ia,96,2o GRUPO,,Segundo del Grupo L,,Croacia,
+score-ia,97,MEJOR 3o,,Tercer clasificado 1,,Costa de Marfil,
+score-ia,98,MEJOR 3o,,Tercer clasificado 2,,Ghana,
+score-ia,99,MEJOR 3o,,Tercer clasificado 3,,Irán,
+score-ia,100,MEJOR 3o,,Tercer clasificado 4,,Escocia,
+score-ia,101,MEJOR 3o,,Tercer clasificado 5,,Suecia,
+score-ia,102,MEJOR 3o,,Tercer clasificado 6,,Bosnia y Herzegovina,
+score-ia,103,MEJOR 3o,,Tercer clasificado 7,,Argelia,
+score-ia,104,MEJOR 3o,,Tercer clasificado 8,,Noruega,
+score-ia,105,16AVOS,,2A vs 2B,,Corea del Sur,
+score-ia,106,16AVOS,,1E vs 3A/B/C/D/F,,Alemania,
+score-ia,107,16AVOS,,1F vs 2C,,Países Bajos,
+score-ia,108,16AVOS,,1C vs 2F,,Brasil,
+score-ia,109,16AVOS,,1I vs 3C/D/F/G/H,,Francia,
+score-ia,110,16AVOS,,2E vs 2I,,Senegal,
+score-ia,111,16AVOS,,1A vs 3C/E/F/H/I,,México,
+score-ia,112,16AVOS,,1L vs 3E/H/I/J/K,,Inglaterra,
+score-ia,113,16AVOS,,1D vs 3B/E/F/I/J,,Turquía,
+score-ia,114,16AVOS,,1G vs 3A/E/H/I/J,,Bélgica,
+score-ia,115,16AVOS,,2K vs 2L,,Portugal,
+score-ia,116,16AVOS,,1H vs 2J,,España,
+score-ia,117,16AVOS,,1B vs 3E/F/G/I/J,,Canadá,
+score-ia,118,16AVOS,,1J vs 2H,,Argentina,
+score-ia,119,16AVOS,,1K vs 3D/E/I/J/L,,Colombia,
+score-ia,120,16AVOS,,2D vs 2G,,Estados Unidos,
+score-ia,121,OCTAVOS,,Ganador P105 vs Ganador P106,,Francia,
+score-ia,122,OCTAVOS,,Ganador P107 vs Ganador P108,,Países Bajos,
+score-ia,123,OCTAVOS,,Ganador P109 vs Ganador P110,,Brasil,
+score-ia,124,OCTAVOS,,Ganador P111 vs Ganador P112,,Inglaterra,
+score-ia,125,OCTAVOS,,Ganador P113 vs Ganador P114,,España,
+score-ia,126,OCTAVOS,,Ganador P115 vs Ganador P116,,Bélgica,
+score-ia,127,OCTAVOS,,Ganador P117 vs Ganador P118,,Argentina,
+score-ia,128,OCTAVOS,,Ganador P119 vs Ganador P120,,Colombia,
+score-ia,129,CUARTOS,,Ganador P121 vs Ganador P122,,Francia,
+score-ia,130,CUARTOS,,Ganador P123 vs Ganador P124,,España,
+score-ia,131,CUARTOS,,Ganador P125 vs Ganador P126,,Brasil,
+score-ia,132,CUARTOS,,Ganador P127 vs Ganador P128,,Argentina,
+score-ia,133,SEMIFINAL,,Ganador P129 vs Ganador P130,,Francia,
+score-ia,134,SEMIFINAL,,Ganador P131 vs Ganador P132,,Brasil,
+score-ia,135,3er PUESTO,,Perdedor P133 vs Perdedor P134,,Argentina,
+score-ia,136,FINAL,,Ganador P133 vs Ganador P134,,Brasil,
+score-ia,137,PODIO,,CAMPEON,,Brasil,
+score-ia,138,PODIO,,SUBCAMPEON,,Francia,
+score-ia,139,PODIO,,TERCER LUGAR,,Argentina,
+score-ia,140,BONUS,,Maximo goleador (Bota de Oro),,Endrick,
+score-ia,141,BONUS,,Mejor portero (Guante de Oro),,Mike Maignan,
+score-ia,142,BONUS,,Mejor jugador (Balon de Oro),,Vinícius Júnior,
+score-ia,143,BONUS,,Mejor jugador joven (sub-21),,Lamine Yamal,
+score-ia,144,BONUS,,Seleccion FAIR PLAY,,Japon,

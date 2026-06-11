@@ -29,9 +29,9 @@ def read_contact(path):
         raise ValueError("No existe la pestaña HOME")
     sheet = workbook["HOME"]
     return {
-        "nombre": clean(sheet["C4"].value),
+      #  "nombre": clean(sheet["C4"].value),
         "email": clean(sheet["C5"].value),
-        "archivo": path.name,
+      #  "archivo": path.name,
     }
 
 

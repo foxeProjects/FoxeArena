@@ -11,7 +11,7 @@ FIELDNAMES = ["participante", "match_num", "group", "date", "team1", "team2", "p
 
 GROUP_MATCH_RANGE = range(1, 73)
 GROUP_INPUT_ROWS = range(18, 90)
-
+ 
 KNOCKOUT_CELL_MAP = {
     **{match_num: f"I{row}" for match_num, row in zip(range(73, 105), range(6, 38))},
     **{match_num: f"I{row}" for match_num, row in zip(range(105, 121), range(41, 57))},

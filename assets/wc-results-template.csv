@@ -2,7 +2,7 @@ match_num,group,date,team1,team2,score1,score2,yellow1,red1,yellow2,red2
 1,A,11 Jun,Mexico,Sudafrica,2,0,1,1,2,2
 2,A,11 Jun,Corea del Sur,Republica Checa,2,1,1,0,0,0
 3,B,12 Jun,Canada,Bosnia y Herzegovina,1,1,2,0,3,0
-4,D,12 Jun,Estados Unidos,Paraguay,0,0,,,,
+4,D,12 Jun,Estados Unidos,Paraguay,1,0,,,,
 5,C,13 Jun,Haiti,Escocia,,,,,,
 6,D,13 Jun,Australia,Turquia,,,,,,
 7,C,13 Jun,Brasil,Marruecos,,,,,,

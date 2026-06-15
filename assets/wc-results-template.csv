@@ -11,7 +11,7 @@ match_num,group,date,team1,team2,score1,score2,yellow1,red1,yellow2,red2
 10,E,14 Jun,Costa de Marfil,Ecuador,1,0,3,0,1,0
 11,F,14 Jun,Paises Bajos,Japon,2,2,3,0,0,0
 12,F,14 Jun,Suecia,Tunez,5,1,0,0,1,0
-13,H,15 Jun,Arabia Saudita,Uruguay,1,0,,,,
+13,H,15 Jun,Arabia Saudita,Uruguay,1,1,,,,
 14,H,15 Jun,Espana,Cabo Verde,0,0,1,0,1,0
 15,G,15 Jun,Iran,Nueva Zelanda,,,,,,
 16,G,15 Jun,Belgica,Egipto,1,1,2,0,2,0

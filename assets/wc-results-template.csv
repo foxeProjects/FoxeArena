@@ -15,7 +15,7 @@ match_num,group,date,team1,team2,score1,score2,yellow1,red1,yellow2,red2
 14,H,15 Jun,Espana,Cabo Verde,0,0,1,0,1,0
 15,G,15 Jun,Iran,Nueva Zelanda,2,2,1,0,0,0
 16,G,15 Jun,Belgica,Egipto,1,1,2,0,2,0
-17,I,16 Jun,Francia,Senegal,,,,,,
+17,I,16 Jun,Francia,Senegal,0,0,,,,
 18,I,16 Jun,Irak,Noruega,,,,,,
 19,J,16 Jun,Argentina,Argelia,,,,,,
 20,J,16 Jun,Austria,Jordania,,,,,,

@@ -24,7 +24,7 @@ match_num,group,date,team1,team2,score1,score2,yellow1,red1,yellow2,red2
 23,K,17 Jun,Portugal,R. D. del Congo,1,1,3,0,1,0
 24,K,17 Jun,Uzbekistan,Colombia,1,3,1,0,1,0
 25,A,18 Jun,Republica Checa,Sudafrica,1,1,1,0,2,0
-26,B,18 Jun,Suiza,Bosnia y Herzegovina,,,,,,
+26,B,18 Jun,Suiza,Bosnia y Herzegovina,0,0,,,,
 27,B,18 Jun,Canada,Catar,,,,,,
 28,A,18 Jun,Mexico,Corea del Sur,,,,,,
 29,C,19 Jun,Brasil,Haiti,,,,,,

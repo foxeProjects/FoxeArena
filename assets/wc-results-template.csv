@@ -22,7 +22,7 @@ match_num,group,date,team1,team2,score1,score2,yellow1,red1,yellow2,red2
 21,L,17 Jun,Ghana,Panama,1,0,1,0,2,0
 22,L,17 Jun,Inglaterra,Croacia,4,2,0,0,0,0
 23,K,17 Jun,Portugal,R. D. del Congo,1,1,3,0,1,0
-24,K,17 Jun,Uzbekistan,Colombia,,,,,,
+24,K,17 Jun,Uzbekistan,Colombia,0,1,,,,
 25,A,18 Jun,Republica Checa,Sudafrica,,,,,,
 26,B,18 Jun,Suiza,Bosnia y Herzegovina,,,,,,
 27,B,18 Jun,Canada,Catar,,,,,,

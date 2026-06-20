@@ -31,7 +31,7 @@ match_num,group,date,team1,team2,score1,score2,yellow1,red1,yellow2,red2
 30,C,19 Jun,Escocia,Marruecos,0,1,1,0,1,0
 31,D,19 Jun,Turquia,Paraguay,0,1,1,0,1,1
 32,D,19 Jun,Estados Unidos,Australia,2,0,3,0,4,0
-33,E,20 Jun,Alemania,Costa de Marfil,1,1,,,,
+33,E,20 Jun,Alemania,Costa de Marfil,2,1,,,,
 34,E,20 Jun,Ecuador,Curazao,,,,,,
 35,F,20 Jun,Paises Bajos,Suecia,5,1,0,0,3,0
 36,F,20 Jun,Tunez,Japon,,,,,,

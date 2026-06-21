@@ -37,7 +37,7 @@ match_num,group,date,team1,team2,score1,score2,yellow1,red1,yellow2,red2
 36,F,20 Jun,Tunez,Japon,0,4,0,0,0,0
 37,H,21 Jun,Uruguay,Cabo Verde,,,,,,
 38,H,21 Jun,Espana,Arabia Saudita,4,0,0,0,2,0 
-39,G,21 Jun,Belgica,Iran,0,1,,,,
+39,G,21 Jun,Belgica,Iran,0,0,,,,
 40,G,21 Jun,Nueva Zelanda,Egipto,,,,,,
 41,I,22 Jun,Noruega,Senegal,,,,,,
 42,I,22 Jun,Francia,Irak,,,,,,

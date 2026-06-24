@@ -258,7 +258,7 @@ def compute_porra_ranking() -> pd.DataFrame:
             if group_name in {"1o GRUPO", "2o GRUPO"}:
                 letter = _group_letter_from_label(pred.get("team1"))
                 if group_actual.get((group_name, letter)) == _stage_prediction(pred):
-                    group_points += 10 if group_name == "1o GRUPO" else 5
+                    group_points += 0 if group_name == "1o GRUPO" else 0
 
         round_points += _score_qualified_to_round_of_32(pdf, results_df)
         for stage, points in NEXT_ROUND_POINTS.items():

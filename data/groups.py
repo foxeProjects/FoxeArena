@@ -68,7 +68,7 @@ GROUPS = {
             _match("13 Jun", "Haiti", "\U0001f1ed\U0001f1f9", "Escocia", "\U0001f3f4\U000e0067\U000e0062\U000e0073\U000e0063\U000e0074\U000e007f", 5, "Gillette Stadium, Boston"),
             _match("19 Jun", "Brasil", "\U0001f1e7\U0001f1f7", "Haiti", "\U0001f1ed\U0001f1f9", 29, "Lincoln Financial Field, Filadelfia"),
             _match("19 Jun", "Escocia", "\U0001f3f4\U000e0067\U000e0062\U000e0073\U000e0063\U000e0074\U000e007f", "Marruecos", "\U0001f1f2\U0001f1e6", 30, "Gillette Stadium, Boston"),
-            _match("24 Jun", "Escocia", "\U0001f3f4\U000e0067\U000e0062\U000e0073\U000e0063\U000e0074\U000e007f", "Brasil", "\U0001f1e7\U0001f1f7", 49, "Hard Rock Stadium, Miami"),
+            _match("24 Jun", "Brasil", "\U0001f3f4\U000e0067\U000e0062\U000e0073\U000e0063\U000e0074\U000e007f", "Escocia", "\U0001f1e7\U0001f1f7", 49, "Hard Rock Stadium, Miami"),
             _match("24 Jun", "Marruecos", "\U0001f1f2\U0001f1e6", "Haiti", "\U0001f1ed\U0001f1f9", 50, "Mercedes-Benz Stadium, Atlanta"),
         ],
         "banner": "assets/grupoC/bannerC.png",

@@ -46,7 +46,7 @@ match_num,group,date,team1,team2,score1,score2,yellow1,red1,yellow2,red2
 45,L,23 Jun,Inglaterra,Ghana,0,0,1,0,1,0
 46,L,23 Jun,Panama,Croacia,0,1,1,0,1,0
 47,K,23 Jun,Portugal,Uzbekistan,5,0,1,0,1,0
-48,K,23 Jun,Colombia,R. D. del Congo,,,,,,
+48,K,23 Jun,Colombia,R. D. del Congo,0,0,,,,
 49,C,24 Jun,Brasil,Escocia,,,,,,
 50,C,24 Jun,Marruecos,Haiti,,,,,,
 51,B,24 Jun,Suiza,Canada,,,,,,

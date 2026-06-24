@@ -44,7 +44,7 @@ match_num,group,date,team1,team2,score1,score2,yellow1,red1,yellow2,red2
 43,J,22 Jun,Argentina,Austria,2,0,2,0,2,0
 44,J,22 Jun,Jordania,Argelia,1,2,1,0,1,0
 45,L,23 Jun,Inglaterra,Ghana,0,0,1,0,1,0
-46,L,23 Jun,Panama,Croacia,1,0,,,,
+46,L,23 Jun,Panama,Croacia,0,1,,,,
 47,K,23 Jun,Portugal,Uzbekistan,5,0,1,0,1,0
 48,K,23 Jun,Colombia,R. D. del Congo,,,,,,
 49,C,24 Jun,Brasil,Escocia,,,,,,

@@ -42,7 +42,7 @@ def get_general_insights() -> dict:
     if not results_df.empty:
         played = len(results_df[(results_df["score1"].notna()) & (results_df["score2"].notna()) & (results_df["match_num"] <= 72)])
 
-    def counts_for(match_num: int, limit: int = 8) -> dict:
+    def counts_for(match_num: int, limit: int = 20) -> dict:
         rows = participants_df[participants_df["match_num"] == match_num] if not participants_df.empty else pd.DataFrame()
         if rows.empty:
             return {}

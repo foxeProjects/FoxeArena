@@ -51,7 +51,7 @@ match_num,group,date,team1,team2,score1,score2,yellow1,red1,yellow2,red2
 50,C,24 Jun,Marruecos,Haiti,4,2,0,0,3,0
 51,B,24 Jun,Suiza,Canada,2,1,1,0,2,0
 52,B,24 Jun,Bosnia y Herzegovina,Catar,3,1,1,0,1,0
-53,A,24 Jun,Republica Checa,Mexico,0,0,,,,
+53,A,24 Jun,Republica Checa,Mexico,0,1,,,,
 54,A,24 Jun,Sudafrica,Corea del Sur,0,0,,,,
 55,E,25 Jun,Curazao,Costa de Marfil,,,,,,
 56,E,25 Jun,Ecuador,Alemania,,,,,,

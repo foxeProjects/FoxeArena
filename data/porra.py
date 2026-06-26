@@ -192,7 +192,7 @@ def _score_stage_sets(participant_df, actual_df, stage, points):
         for v in actual_df.loc[
             (actual_df["group"] == stage)
             & (actual_df["match_num"].isin(ROUND_MATCHES.get(stage, []))),
-            "score1",
+            "yellow1",
         ]
         if _text(v)
     )

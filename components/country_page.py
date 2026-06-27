@@ -65,21 +65,19 @@ def _render_matches(country_name: str):
     rows = ""
     for match in matches:
         is_group_match = match.get("is_group_match", True)
-        played = match["score1"] is not None and (match["score2"] is not None or not is_group_match)
+        played = match["score1"] is not None and match["score2"] is not None
         status_class = "country-match-finished" if played else "country-match-pending"
         if not is_group_match:
             status_class = "country-match-knockout-finished" if played else "country-match-knockout-pending"
-        if played and is_group_match:
+        if played:
             score = f'{match["score1"]} - {match["score2"]}'
-        elif played:
-            score = "vs"
         else:
             score = "vs"
         recipes = get_country_recipes(country_name)
         recommendation = recipes[(match["match_num"] - 1) % len(recipes)]
         display_mn = display_match_num(match["match_num"])
         meta = f'{html.escape(match["date"])} · Grupo {html.escape(match["group"])}' if is_group_match else f'{html.escape(match["date"])} · {html.escape(match["group"])}'
-        classified = f'<div class="country-scoreia-tip">&#9989; Clasificado: {html.escape(str(match["score1"]))}</div>' if played and not is_group_match else ""
+        classified = f'<div class="country-scoreia-tip">&#9989; Clasificado: {html.escape(str(match.get("classified", "")))}</div>' if played and not is_group_match and match.get("classified") else ''
         stadium = f'<div class="country-match-stadium">&#127967; {html.escape(match["stadium"])}</div>' if match["stadium"] else ""
         open_tag = f'<a class="country-match-card {status_class}" href="?match={match["match_num"]}" target="_self">'
         close_tag = '</a>'

@@ -145,7 +145,9 @@ def get_country_matches(country: str) -> list[dict]:
                 continue
             if team1.lower() != requested and team2.lower() != requested:
                 continue
-            score1 = "" if pd.isna(row.get("score1")) else str(row.get("score1", "")).strip()
+            score1 = _safe_int(row.get("score1"))
+            score2 = _safe_int(row.get("score2"))
+            classified = "" if pd.isna(row.get("yellow1")) else str(row.get("yellow1")).strip()
             opponent = team2 if team1.lower() == requested else team1
             matches.append({
                 "match_num": match_num,
@@ -155,8 +157,9 @@ def get_country_matches(country: str) -> list[dict]:
                 "team2": team2,
                 "opponent": opponent,
                 "stadium": "",
-                "score1": score1 if score1 else None,
-                "score2": None,
+                "score1": score1,
+                "score2": score2,
+                "classified": classified,
                 "is_group_match": False,
             })
     return sorted(matches, key=lambda item: item["match_num"])

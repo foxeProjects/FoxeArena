@@ -1,7 +1,6 @@
 import pandas as pd
 import streamlit as st
 from components.styles import PROJECT_ROOT
-from data.results import compute_standings
 
 PARTICIPANTS_PATH = PROJECT_ROOT / "assets" / "wc-participantes-template.csv"
 RESULTS_PATH = PROJECT_ROOT / "assets" / "wc-results-template.csv"
@@ -26,6 +25,10 @@ NEXT_ROUND_POINTS = {
     "SEMIFINAL": ROUND_POINTS["FINAL"],
 }
 ROUND_OF_32_QUALIFIER_POINTS = ROUND_POINTS["16AVOS"]
+GROUP_STAGE_POINTS = {
+    "1o GRUPO": 10,
+    "2o GRUPO": 5,
+}
 PODIUM_POINTS = {
     137: 400,
     138: 250,
@@ -158,27 +161,24 @@ def _stage_prediction(row):
     return pred1 or pred2
 
 
-def _actual_group_classification(results_df):
-    actual = {}
-    if results_df.empty:
-        return actual
-    groups_with_all_results = []
-    for group, grp in results_df[results_df["match_num"] <= 72].groupby("group"):
-        if len(grp) == 6 and grp["score1"].notna().all() and grp["score2"].notna().all():
-            groups_with_all_results.append(str(group).strip().upper())
-    for group in groups_with_all_results:
-        standings = compute_standings(group)
-        if len(standings) >= 2:
-            actual[("1o GRUPO", group)] = standings[0]["name"]
-            actual[("2o GRUPO", group)] = standings[1]["name"]
-    return actual
+def _stage_result(row):
+    score1 = _text(row.get("score1"))
+    team2 =  _text(row.get("team2"))
+    return score1 or team2
 
 
-def _group_letter_from_label(label):
-    text = _text(label)
-    if "Grupo " not in text:
-        return ""
-    return text.rsplit("Grupo ", 1)[-1].strip().upper()
+def _score_group_stage_position(pred,actual_row):
+    group_name = _text(pred.get("group"))
+    if group_name not in GROUP_STAGE_POINTS:
+        return 0
+    if actual_row is None:
+        return 0
+    actual = _stage_result(actual_row)
+    if not actual:
+        return 0
+    if _stage_prediction(pred) == actual:
+        return GROUP_STAGE_POINTS[group_name]
+    return 0
 
 
 def _score_stage_sets(participant_df, actual_df, stage, points):
@@ -206,12 +206,11 @@ def _score_qualified_to_round_of_32(participant_df, actual_df):
         if _stage_prediction(row)
     )
     actual = set(
-        _text(v)
-        for v in actual_df.loc[
-            actual_df["group"].isin(["1o GRUPO", "2o GRUPO", "MEJOR 3o"]),
-            "score1",
-        ]
-        if _text(v)
+        _stage_result(row)
+        for _, row in actual_df.loc[
+            actual_df["group"].isin(["1o GRUPO", "2o GRUPO", "MEJOR 3o"])
+        ].iterrows()
+        if _stage_result(row)
     )
     return len(predicted & actual) * ROUND_OF_32_QUALIFIER_POINTS
 
@@ -231,7 +230,13 @@ def compute_porra_ranking() -> pd.DataFrame:
             if match_num is not None and score1 is not None and score2 is not None:
                 played[match_num] = (score1, score2)
 
-    group_actual = _actual_group_classification(results_df)
+    actual_by_match_num = {}
+    if not results_df.empty:
+        for _, row in results_df.iterrows():
+            match_num = _safe_int(row.get("match_num"))
+            if match_num is not None:
+                actual_by_match_num[match_num] = row
+
     rows = []
     for participante, pdf in participants_df.groupby("participante", sort=False):
         match_points = 0
@@ -247,18 +252,14 @@ def compute_porra_ranking() -> pd.DataFrame:
                 match_points += _score_match_prediction(_safe_int(pred.get("pred1")), _safe_int(pred.get("pred2")), score1, score2)
             elif match_num in PODIUM_POINTS:
                 actual_row = results_df[results_df["match_num"] == match_num] if not results_df.empty else pd.DataFrame()
-                if not actual_row.empty and _text(actual_row.iloc[0].get("score1")) and _stage_prediction(pred) == _text(actual_row.iloc[0].get("score1")):
+                if not actual_row.empty and _stage_result(actual_row.iloc[0]) and _stage_prediction(pred) == _stage_result(actual_row.iloc[0]):
                     podium_points += PODIUM_POINTS[match_num]
             elif match_num in BONUS_POINTS:
                 actual_row = results_df[results_df["match_num"] == match_num] if not results_df.empty else pd.DataFrame()
-                if not actual_row.empty and _text(actual_row.iloc[0].get("score1")) and _stage_prediction(pred) == _text(actual_row.iloc[0].get("score1")):
+                if not actual_row.empty and _stage_result(actual_row.iloc[0]) and _stage_prediction(pred) == _stage_result(actual_row.iloc[0]):
                     bonus_points += BONUS_POINTS[match_num]
 
-            group_name = _text(pred.get("group"))
-            if group_name in {"1o GRUPO", "2o GRUPO"}:
-                letter = _group_letter_from_label(pred.get("team1"))
-                if group_actual.get((group_name, letter)) == _stage_prediction(pred):
-                    group_points += 0 if group_name == "1o GRUPO" else 0
+            group_points += _score_group_stage_position(pred, actual_by_match_num.get(match_num))
 
         round_points += _score_qualified_to_round_of_32(pdf, results_df)
         for stage, points in NEXT_ROUND_POINTS.items():

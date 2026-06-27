@@ -2,6 +2,7 @@
 Home page: Match radar, porra ranking and YouTube channel.
 """
 import streamlit as st
+import pandas as pd
 import re
 from datetime import datetime, timezone, timedelta
 from urllib.parse import quote
@@ -187,11 +188,11 @@ def _get_match_radar_items():
         details = group_details.get(match_num, {})
         score1 = _safe_int(row.get("score1"))
         score2 = _safe_int(row.get("score2"))
-        classified = str(row.get("score1", "")).strip()
+        classified = "" if pd.isna(row.get("yellow1")) else str(row.get("yellow1", "")).strip()
         is_group_match = group_key in set(GROUPS.keys())
-        result = (score1, score2) if is_group_match and score1 is not None and score2 is not None else None
-        if not is_group_match and classified:
-            result = ("classified", classified)
+        result = (score1, score2) if score1 is not None and score2 is not None else None
+        if not is_group_match and result:
+            result = (score1, score2, classified)
 
         item = {
             "match_num": match_num,
@@ -276,15 +277,17 @@ def _render_match_radar():
                 f'&#129418; SCORE-IA prediction: {p1} - {p2}</div>'
             )
 
-        if result and is_group_match:
-            s1, s2 = result
+        if result :
+            s1, s2 = result[:2]
             teams_html = (
                 f'<div class="match-teams"><a class="country-inline-link" href="?country={team1_url}" target="_self">{match["team1"]}</a>'
                 f'<span style="color:#f5c542; font-weight:900; margin:0 8px;">{s1} - {s2}</span>'
                 f'<a class="country-inline-link" href="?country={team2_url}" target="_self">{match["team2"]}</a></div>'
             )
-            card_class = "match-card match-card-finished"
-            badge_class = "match-num match-num-finished"
+            if not is_group_match and len(result) > 2 and result[2]:
+                teams_html += f'<div style="font-size:11px; color:#f5c542; font-weight:900; margin-top:4px;">Clasificado: {result[2]}</div>'
+            card_class = "match-card match-card-finished" if is_group_match else "match-card match-card-knockout-finished"
+            badge_class = "match-num match-num-finished" if is_group_match else "match-num match-num-knockout-finished"
             link_class = "match-insight-link match-insight-link-finished"
         else:
             if match["team2"]:
@@ -295,8 +298,6 @@ def _render_match_radar():
                 )
             else:
                 teams_html = f'<div class="match-teams">{match["team1"]}</div>'
-            if result and not is_group_match:
-                teams_html += f'<div style="font-size:11px; color:#f5c542; font-weight:900; margin-top:4px;">Clasificado: {result[1]}</div>'
             if is_group_match:
                 card_class = "match-card match-card-pending"
                 badge_class = "match-num match-num-pending"

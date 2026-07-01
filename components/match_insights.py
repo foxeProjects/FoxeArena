@@ -56,7 +56,7 @@ def _find_knockout_match(match_num: int):
         team2 = ""
     if not team1:
         return None
-    classified = str(row.get("score1", "")).strip()
+    classified = str(row.get("yellow1", "")).strip()
     if classified.lower() == "nan":
         classified = ""
     date = display_match_date(match_num, row.get("date", ""))
@@ -375,7 +375,7 @@ def _render_knockout_insights(match_num: int, match: dict):
     )
 
     if classified:
-        hit_text = ", ".join(html.escape(name) for name in hits[:20]) if hits else "Nadie lo llevaba en esta fase."
+        hit_text = ", ".join(html.escape(name) for name in hits) if hits else "Nadie lo llevaba en esta fase."
         st.markdown(
             '<div class="fa-card" style="padding:16px;">'
             f'<div style="color:#f5c542; font-weight:950; text-align:center; margin-bottom:8px;">Clasificado real: {html.escape(classified)}</div>'

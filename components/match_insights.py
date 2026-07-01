@@ -311,7 +311,8 @@ def _render_knockout_insights(match_num: int, match: dict):
     team1_people = [name for name, picks in by_participant.items() if team1 in picks]
     team2_people = [name for name, picks in by_participant.items() if team2 and team2 in picks]
     both = [name for name, picks in by_participant.items() if team1 in picks and team2 and team2 in picks]
-    one = [name for name, picks in by_participant.items() if (team1 in picks) ^ (bool(team2) and team2 in picks)]
+    only_team1 = [name for name, picks in by_participant.items() if team1 in picks and (not team2 or team2 not in picks)]
+    only_team2 = [name for name, picks in by_participant.items() if team2 and team2 in picks and team1 not in picks]
     zero = [name for name, picks in by_participant.items() if team1 not in picks and (not team2 or team2 not in picks)]
     classified = match.get("classified", "")
     hits = [name for name, picks in by_participant.items() if classified and classified in picks]
@@ -333,11 +334,16 @@ def _render_knockout_insights(match_num: int, match: dict):
         "cubren ambos lados del cruce, estrategia o miedo escenico",
         "llevan a los dos equipos vivos en esta fase",
     ])
-    one_label = random.choice([
-        "pronostican a una de las dos selecciones",
-        "eligieron bando en este cruce",
-        "tienen una bala en este partido",
+    team1_label = random.choice([
+        f"tienen una bala en {team1}",
+        f"eligieron bando: {team1}",
+        f"pronostican solo a {team1}",
     ])
+    team2_label = random.choice([
+        f"tienen una bala en {team2}",
+        f"eligieron bando: {team2}",
+        f"pronostican solo a {team2}",
+    ]) if team2 else ""
     zero_label = random.choice([
         "no llevan a ninguna; el cruce les mira desde lejos",
         "se quedaron fuera de esta fiesta",
@@ -361,10 +367,18 @@ def _render_knockout_insights(match_num: int, match: dict):
         "SCORE-IA tiene una mala noticia: el comodin sentimental no puntua.",
         "Esto no es drama, es normalizacion de expectativas.",
     ])
+    
+    chips = f'<div class="stat-chip"><strong>{len(both)}</strong> {both_label}</div>'
+    chips += f'<div class="stat-chip"><strong>{len(only_team1)}</strong> {team1_label}</div>'
+    if team2:
+        chips += f'<div class="stat-chip"><strong>{len(only_team2)}</strong> {team2_label}</div>'
+    chips += f'<div class="stat-chip"><strong>{len(zero)}</strong> {zero_label}</div>'
+    
     st.markdown(
         '<div class="fa-card" style="padding:16px; margin-top:14px;">'
         '<div style="color:#f5c542; font-weight:950; text-align:center; margin-bottom:10px;">&#129418; Lectura SCORE-IA del cruce</div>'
         '<div class="stats-row">'
+        f'{chips}'
         f'<div class="stat-chip"><strong>{len(both)}</strong> {both_label}</div>'
         f'<div class="stat-chip"><strong>{len(one)}</strong> {one_label}</div>'
         f'<div class="stat-chip"><strong>{len(zero)}</strong> {zero_label}</div>'

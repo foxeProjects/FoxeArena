@@ -396,7 +396,7 @@ def _render_knockout_insights(match_num: int, match: dict):
             unsafe_allow_html=True,
         )
 
-    ranking = compute_porra_ranking().head(10)
+    ranking = compute_porra_ranking()
     if not ranking.empty:
         rows = ""
         for _, row in ranking.iterrows():
@@ -421,7 +421,7 @@ def _render_knockout_insights(match_num: int, match: dict):
             )
         st.markdown(
             '<div class="fa-card" style="padding:14px; overflow-x:auto;">'
-            '<div style="color:#f5c542; font-weight:950; text-align:center; margin-bottom:8px;">Top 10 vigente</div>'
+            '<div style="color:#f5c542; font-weight:950; text-align:center; margin-bottom:8px;">Clasificacion</div>'
             '<table class="score-table"><thead><tr><th>Pos</th><th>Participante</th><th>Pronostico</th><th style="text-align:right;">Pts</th></tr></thead>'
             f'<tbody>{rows}</tbody></table></div>',
             unsafe_allow_html=True,

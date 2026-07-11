@@ -129,7 +129,7 @@ match_num,group,date,team1,team2,score1,score2,yellow1,red1,yellow2,red2
 128,OCTAVOS,,Suiza,Colombia,0,0,Suiza,,,
 129,CUARTOS,,Francia,Marruecos,2,0,Francia,,,
 130,CUARTOS,,Espana,Belgica,2,1,Espana,,,
-131,CUARTOS,,Noruega,Inglaterra,1,0,Noruega,,,
+131,CUARTOS,,Noruega,Inglaterra,1,1,,,,
 132,CUARTOS,,Argentina,Suiza,,,,,,
 133,SEMIFINAL,,Francia,Espana,,,,,,
 134,SEMIFINAL,,Ganador P131 vs Ganador P132,,,,,,,

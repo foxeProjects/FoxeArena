@@ -285,7 +285,14 @@ def _render_match_radar():
                 f'<a class="country-inline-link" href="?country={team2_url}" target="_self">{match["team2"]}</a></div>'
             )
             if not is_group_match and len(result) > 2 and result[2]:
-                teams_html += f'<div style="font-size:11px; color:#f5c542; font-weight:900; margin-top:4px;">Clasificado: {result[2]}</div>'
+                winner = result[2]
+                # Special badges for FINAL and TERCER PUESTO
+                if mn == 136:  # FINAL
+                    teams_html += f'<div style="font-size:12px; font-weight:950; margin-top:8px; padding:8px 12px; background:linear-gradient(135deg,#ffd700,#fff0a8); color:#000; border-radius:12px; text-align:center; box-shadow:0 0 16px rgba(255,215,0,0.4);">&#127942; CAMPEON: {winner}</div>'
+                elif mn == 135:  # TERCER PUESTO
+                    teams_html += f'<div style="font-size:12px; font-weight:950; margin-top:8px; padding:8px 12px; background:linear-gradient(135deg,#cd7f32,#e6a857); color:#fff; border-radius:12px; text-align:center; box-shadow:0 0 16px rgba(205,127,66,0.4);">&#129353; TERCER PUESTO: {winner}</div>'
+                else:
+                    teams_html += f'<div style="font-size:11px; color:#f5c542; font-weight:900; margin-top:4px;">Clasificado: {winner}</div>'
             card_class = "match-card match-card-finished" if is_group_match else "match-card match-card-knockout-finished"
             badge_class = "match-num match-num-finished" if is_group_match else "match-num match-num-knockout-finished"
             link_class = "match-insight-link match-insight-link-finished"

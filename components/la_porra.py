@@ -418,9 +418,9 @@ def _render_bigdata():
         139: "PODIO: Tercer Puesto",
     }
     bonus_labels = {
-        140: "BONUS: Balón de Oro",
+        140: "BONUS: Goleador",
         141: "BONUS: Mejor Portero",
-        142: "BONUS: Goleador",
+        142: "BONUS: Balón de Oro",
         143: "BONUS: Mejor Joven",
         144: "BONUS: Fair Play",
     }

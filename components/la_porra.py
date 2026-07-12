@@ -5,7 +5,7 @@ import streamlit as st
 import pandas as pd
 from html import escape
 from data.insights import get_general_insights, is_porra_closed
-from data.porra import load_participants
+from data.porra import load_participants, _safe_int
 
 
 def _render_kickoff():
@@ -394,6 +394,9 @@ def _render_bigdata():
                 | visible["pred1"].fillna("").astype(str).str.lower().str.contains(query, regex=False)
                 | visible["pred2"].fillna("").astype(str).str.lower().str.contains(query, regex=False)
             ]
+        # Exclude rows explicitly labelled as FINAL or 3er PUESTO (text in 'group').
+        # Keep PODIO entries (they are specific match_num 137-139 and should be shown as PODIO labels).
+        visible = visible[~visible["group"].fillna("").astype(str).str.strip().str.upper().isin(["FINAL", "3ER PUESTO"])]
         columns = ["participante", "group", "pred1"]
         headers = ["Participante", "Fase", "Respuesta"]
         third_kpi_label = "fases filtradas"
@@ -408,7 +411,21 @@ def _render_bigdata():
         unsafe_allow_html=True,
     )
 
-    def format_cell_value(column, value):
+    # Labels for PODIUM and BONUS
+    podium_labels = {
+        137: "PODIO: Campeón",
+        138: "PODIO: Subcampeón",
+        139: "PODIO: Tercer Puesto",
+    }
+    bonus_labels = {
+        140: "BONUS: Balón de Oro",
+        141: "BONUS: Mejor Portero",
+        142: "BONUS: Goleador",
+        143: "BONUS: Mejor Joven",
+        144: "BONUS: Fair Play",
+    }
+
+    def format_cell_value(column, value, match_num_val=None):
         if column in {"pred1", "pred2"}:
             numeric = pd.to_numeric(value, errors="coerce")
             if pd.notna(numeric):
@@ -417,6 +434,11 @@ def _render_bigdata():
             return ""
         text = str(value)
         if mode == "Eliminatorias" and column == "group":
+            # Check if this is a PODIO or BONUS phase
+            if match_num_val in podium_labels:
+                return podium_labels[match_num_val]
+            if match_num_val in bonus_labels:
+                return bonus_labels[match_num_val]
             phase_aliases = {
                 "1o GRUPO": "16AVOS",
                 "2o GRUPO": "16AVOS",
@@ -443,8 +465,9 @@ def _render_bigdata():
 
     body = ""
     for _, row in visible.head(300).iterrows():
+        match_num_val = _safe_int(row.get("match_num")) if mode == "Eliminatorias" else None
         cells = "".join(
-            f'<td style="width:{col_widths[idx]}; {"text-align:center;" if column in {"pred1", "pred2"} else ""}">{escape(format_cell_value(column, row.get(column, "")))}</td>'
+            f'<td style="width:{col_widths[idx]}; {"text-align:center;" if column in {"pred1", "pred2"} else ""}">{escape(format_cell_value(column, row.get(column, ""), match_num_val))}</td>'
             for idx, column in enumerate(columns)
         )
         body += f"<tr>{cells}</tr>"
